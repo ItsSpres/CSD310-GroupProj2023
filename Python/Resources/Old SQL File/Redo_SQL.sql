@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS OutlandAdventures;
+DROP DATABASE IF EXISTS OutlandAdventures
 CREATE DATABASE OutlandAdventures;
 
 USE OutlandAdventures;
@@ -28,6 +28,7 @@ DROP TABLE IF EXISTS Product;
 CREATE TABLE Destination (
     destination_id INT AUTO_INCREMENT NOT NULL,
     destination_name VARCHAR(64) NOT NULL,
+    destination_description VARCHAR(64),
     PRIMARY KEY (destination_id)
 );
 
@@ -129,3 +130,4 @@ ALTER TABLE Trip ADD FOREIGN KEY (product_id) REFERENCES Product(product_id);
 ALTER TABLE Airfare ADD FOREIGN KEY (trip_id) REFERENCES Trip(trip_id);
 
 
+SELECT * FROM Employee

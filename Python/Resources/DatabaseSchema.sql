@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS OutlandAdventures
+DROP DATABASE IF EXISTS OutlandAdventures;
 CREATE DATABASE OutlandAdventures;
 
 USE OutlandAdventures;
@@ -28,6 +28,7 @@ DROP TABLE IF EXISTS Product;
 CREATE TABLE Destination (
     destination_id INT AUTO_INCREMENT NOT NULL,
     destination_name VARCHAR(64) NOT NULL,
+    destination_description VARCHAR(64),
     PRIMARY KEY (destination_id)
 );
 
@@ -94,8 +95,9 @@ CREATE TABLE Employee (
 -- Marketing table
 CREATE TABLE Marketing (
     marketing_id INT AUTO_INCREMENT NOT NULL,
-    strategy VARCHAR(64) NOT NULL,
-    budget DECIMAL(10, 2) NOT NULL,
+    marketing_strategy VARCHAR(64) NOT NULL,
+    marketing_budget DECIMAL(10, 2) NOT NULL,
+    marketing_campaign VARCHAR(255) NOT NULL,
     PRIMARY KEY(marketing_id)
 );
 
@@ -103,7 +105,7 @@ CREATE TABLE Marketing (
 CREATE TABLE Equipment (
     equipment_id INT AUTO_INCREMENT NOT NULL,
     equipment_name VARCHAR(64) NOT NULL,
-    quantity INT NOT NULL,
+    equipment_quantity INT NOT NULL,
     PRIMARY KEY(equipment_id)
 );
 
@@ -111,7 +113,8 @@ CREATE TABLE Equipment (
 CREATE TABLE Product (
     product_id INT AUTO_INCREMENT NOT NULL,
     product_name VARCHAR(64) NOT NULL,
-    price DECIMAL(10, 2) NOT NULL,
+    product_price DECIMAL(10, 2) NOT NULL,
+    product_quantity INT NOT NULL,
     PRIMARY KEY(product_id)
 );
 

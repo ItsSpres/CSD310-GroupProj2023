@@ -1,0 +1,2 @@
+INSERT INTO Registration()
+    VALUES();
