@@ -1,5 +1,5 @@
 -- This will be our final file 
-USE Outland_Adventures;
+
 
 -- Drop tables if they exist
 DROP TABLE IF EXISTS Registration;
@@ -16,23 +16,26 @@ DROP TABLE IF EXISTS Product;
 
 -- Destination table
 CREATE TABLE Destination (
-    destination_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY ,
-    destination_name VARCHAR(64) NOT NULL
+    destination_id INT AUTO_INCREMENT NOT NULL,
+    destination_name VARCHAR(64) NOT NULL,
+    PRIMARY KEY(destination_id)
 );
 
 -- Guide table
 CREATE TABLE Guide (
-    guide_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY ,
+    guide_id INT AUTO_INCREMENT NOT NULL,
     guide_name VARCHAR(64) NOT NULL,
     specialization VARCHAR(64) NOT NULL,
     employee_id INT NOT NULL,
+    PRIMARY KEY(guide_id),
     FOREIGN KEY (employee_id) REFERENCES Employee(employee_id)
 );
 
 -- Airfare table
 CREATE TABLE Airfare (
-    airfare_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY ,
+    airfare_id INT AUTO_INCREMENT NOT NULL,
     trip_id INT UNIQUE NOT NULL,
+    PRIMARY KEY(airfare_id),
     FOREIGN KEY (trip_id) REFERENCES Trip(trip_id)
 );
 
