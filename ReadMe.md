@@ -2,6 +2,7 @@
 ### Python Code
 - Needs to be added and reviewed
 ### SQL
+- Consider making new SQL file named differently. Then delete first and second.
 - Needs Insert commands (see below for possible code)
 - Needs Tables changed/tweaked to match current ERD
 - Needs entities to match word Doc
