@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS OutlandAdventures;
 CREATE DATABASE OutlandAdventures;
 
 USE OutlandAdventures;
@@ -18,7 +19,7 @@ DROP TABLE IF EXISTS Guide;
 DROP TABLE IF EXISTS Airfare;
 DROP TABLE IF EXISTS Employee;
 DROP TABLE IF EXISTS Destination;
-DROP TABLE IF EXISTS Website;
+
 DROP TABLE IF EXISTS Marketing;
 DROP TABLE IF EXISTS Equipment;
 DROP TABLE IF EXISTS Product;
@@ -81,20 +82,13 @@ CREATE TABLE Employee (
     employee_id INT AUTO_INCREMENT NOT NULL,
     employee_fname VARCHAR(64) NOT NULL,
     employee_lname VARCHAR(64) NOT NULL,
+    employee_nickname VARCHAR(64),
     position VARCHAR(64) NOT NULL,
     equipment_id INT UNIQUE,
     product_id INT UNIQUE,
-    website_id INT UNIQUE,
     marketing_id INT UNIQUE,
     PRIMARY KEY(employee_id)
 
-);
--- Website table
-CREATE TABLE Website (
-    website_id INT AUTO_INCREMENT NOT NULL,
-    website_name VARCHAR(64) NOT NULL,
-    url VARCHAR(64) NOT NULL,
-    PRIMARY KEY(website_id)
 );
 
 -- Marketing table
@@ -102,7 +96,6 @@ CREATE TABLE Marketing (
     marketing_id INT AUTO_INCREMENT NOT NULL,
     strategy VARCHAR(64) NOT NULL,
     budget DECIMAL(10, 2) NOT NULL,
-    website_id INT UNIQUE,
     PRIMARY KEY(marketing_id)
 );
 
@@ -123,10 +116,8 @@ CREATE TABLE Product (
 );
 
 ALTER TABLE Guide ADD FOREIGN KEY (employee_id) REFERENCES Employee(employee_id);
-ALTER TABLE Marketing ADD FOREIGN KEY (website_id) REFERENCES Website(website_id);
 ALTER TABLE Employee ADD FOREIGN KEY (equipment_id) REFERENCES Equipment(equipment_id);
 ALTER TABLE Employee ADD FOREIGN KEY (product_id) REFERENCES Product(product_id);
-ALTER TABLE Employee ADD FOREIGN KEY (website_id) REFERENCES Website(website_id);
 ALTER TABLE Employee ADD FOREIGN KEY (marketing_id) REFERENCES Marketing(marketing_id);
 ALTER TABLE Registration ADD FOREIGN KEY (trip_id) REFERENCES Trip(trip_id);
 ALTER TABLE Registration ADD FOREIGN KEY (customer_id) REFERENCES Customer(customer_id);
@@ -136,3 +127,5 @@ ALTER TABLE Trip ADD FOREIGN KEY (airfare_id) REFERENCES Airfare(airfare_id);
 ALTER TABLE Trip ADD FOREIGN KEY (equipment_id) REFERENCES Equipment(equipment_id);
 ALTER TABLE Trip ADD FOREIGN KEY (product_id) REFERENCES Product(product_id);
 ALTER TABLE Airfare ADD FOREIGN KEY (trip_id) REFERENCES Trip(trip_id);
+
+
