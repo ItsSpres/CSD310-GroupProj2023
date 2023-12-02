@@ -13,7 +13,6 @@ INSERT INTO Customer(customer_fname, customer_lname, email)
 INSERT INTO Customer(customer_fname, customer_lname, email)
     VALUES("Stanley","Zimmerman","Stan-z-man@outlook.com");
 
-SELECT * From Customer;
 
 #Employee Table Data:
 INSERT INTO Employee(employee_fname, employee_lname, employee_nickname, position)
@@ -32,7 +31,6 @@ INSERT INTO Employee(employee_fname, employee_lname, employee_nickname, position
     VALUES("Mei", "Wong", NULL, "Web Developer" );
 
 
-SELECT * FROM Employee;
 
 #Destination Table Data:
 INSERT INTO DESTINATION(destination_name, destination_description)
@@ -48,7 +46,6 @@ INSERT INTO DESTINATION(destination_name, destination_description)
 INSERT INTO DESTINATION(destination_name, destination_description)
     VALUES("Cinque Terre","Hike along the cliffside trail through 5 coastal villages.");
 
-SELECT * FROM Destination;
 #Equipment Table Data:
 INSERT INTO Equipment(equipment_name, equipment_quantity)
     VALUES("Tent", 03);
@@ -63,23 +60,6 @@ INSERT INTO Equipment(equipment_name,equipment_quantity)
 INSERT INTO Equipment(equipment_name,equipment_quantity)
     VALUES("First Aid Kit", 16);
 
-Select * from Equipment;
-#Guide Table Data:
-INSERT INTO Guide(guide_name, specialization, employee_id)
-    VALUES("Onward Climb Guide","Hiking",3);
-INSERT INTO Guide(guide_name, specialization, employee_id)
-    VALUES("Bucketlist Campers Guide","Camping",3);
-INSERT INTO Guide(guide_name, specialization, employee_id)
-    VALUES("Tent & Trails Guide","Camping",4);
-INSERT INTO Guide(guide_name, specialization, employee_id)
-    VALUES("Outdoor Odyssey Guide","Hiking",3);
-INSERT INTO Guide(guide_name, specialization, employee_id)
-    VALUES("TrekTopia Tour Guide","Hiking",4);
-INSERT INTO Guide(guide_name, specialization, employee_id)
-    VALUES("Camp The Woods","Camping",4);
-
-
-SELECT * FROM Guide;
 #Marketing Table Data:
 INSERT INTO Marketing(marketing_strategy, marketing_budget, marketing_campaign)
     VALUES("Social Media", 500, "FBPROMOHIKE23");
@@ -95,7 +75,6 @@ INSERT INTO Marketing(marketing_strategy, marketing_budget, marketing_campaign)
     VALUES("Partnerships", 1500, "JOINUS2023");
 
 
-SELECT * FROM Marketing;
 #Product Table Data:
 INSERT INTO Product(product_name, product_price, product_quantity)
     VALUES("Outdoor Hiking Backpack", 45.00, 12);
@@ -110,7 +89,41 @@ INSERT INTO Product(product_name, product_price, product_quantity)
 INSERT INTO Product(product_name, product_price, product_quantity)
     VALUES("Hammock", 39.99, 23);
 
-Select * FROM Product;
+
+
 #Registration Table Data:
+INSERT INTO Registration(trip_id, registration_date, customer_id)
+    VALUES(1, ('2022-08-23'), 2);
+INSERT INTO Registration(trip_id, registration_date, customer_id)
+    VALUES(3,('2022-03-19'), 1);
+INSERT INTO Registration(trip_id, registration_date, customer_id)
+    VALUES(2,('2021-01-10'), 4);
+INSERT INTO Registration(trip_id, registration_date, customer_id)
+    VALUES(5,('2023-04-27'), 3);
+INSERT INTO Registration(trip_id, registration_date, customer_id)
+    VALUES(4, ('2023-10-10'), 6);
+INSERT INTO Registration(trip_id, registration_date, customer_id)
+    VALUES(6,('2023-01-14'), 5);
+
+
+
 
 #Trip Table Data:
+INSERT INTO Trip(trip_name, start_date, end_date, trip_category, destination_id, employee_id)
+    VALUES("Onward Climb Guide", ('2023-01-01'), ('2023-01-16'),"Hiking", 3, 3);
+
+INSERT INTO Trip(trip_name, start_date, end_date, trip_category, destination_id, employee_id)
+    VALUES("Bucketlist Campers Guide", ('2021-03-23'),('2021-04-02'), "Camping", 2 ,3);
+INSERT INTO Trip(trip_name, start_date, end_date, trip_category, destination_id, employee_id)
+    VALUES("Tent & Trails Guide",('2022-06-12'), ('2022-06-12'),"Camping",1,4);
+INSERT INTO Trip(trip_name, start_date, end_date, trip_category, destination_id, employee_id)
+    VALUES("Outdoor Odyssey Guide",('2024-04-07'),('2022-04-15'),"Hiking",4,3);
+INSERT INTO Trip(trip_name, start_date, end_date, trip_category, destination_id, employee_id)
+    VALUES("TrekTopia Tour Guide",('2023-12-01'),('2023-12-07'),"Hiking",6,4);
+INSERT INTO Trip(trip_name, start_date, end_date, trip_category, destination_id, employee_id)
+    VALUES("Camp The Woods",('2024-06-17'),('2024-06-29'),"Camping",5 ,4);
+
+
+
+
+Show tables
