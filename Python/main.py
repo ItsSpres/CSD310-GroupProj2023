@@ -5,7 +5,7 @@ from Models.TableEnum import Tables
 try:
     db = Database()
     db.BuildDatabase()
-    db.Select(Tables.Trips)
+    db.Select(Tables.Trip)
 
 except Exception as err:
     print(err)

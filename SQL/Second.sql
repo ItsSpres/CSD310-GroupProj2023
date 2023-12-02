@@ -35,7 +35,6 @@ CREATE TABLE Trip (
 -- Guide table
 CREATE TABLE Guide (
     guide_id INT AUTO_INCREMENT NOT NULL,
-    guide_name VARCHAR(64) NOT NULL,
     specialization VARCHAR(64) NOT NULL,
     employee_id INT NOT NULL,
     PRIMARY KEY(guide_id),
@@ -53,7 +52,8 @@ CREATE TABLE Airfare (
 -- Employee table
 CREATE TABLE Employee (
     employee_id INT AUTO_INCREMENT NOT NULL,
-    employee_name VARCHAR(64) NOT NULL,
+    employee_fname VARCHAR(64) NOT NULL,
+    employee_lname VARCHAR(64) NOT NULL,
     position VARCHAR(64) NOT NULL,
     equipment_id INT UNIQUE,
     product_id INT UNIQUE,

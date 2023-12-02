@@ -1,5 +1,6 @@
 from enum import Enum
 
 class Tables(Enum):
-    trips = "trips"
-    guides = "guides"
+    Trip = None
+    trips = "trip"
+    guides = "guide"
