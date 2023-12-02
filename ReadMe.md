@@ -1,16 +1,11 @@
-## Side Note
-second.sql contains links to the other tables
-per the given ERD within our discord server.
-
-The first sql file contains my initial assumptions. 
-
-Hence, the second one is "more up to date" but 
-has a lot more going on. 
-
-## What's Needed
-- Needs to be reviewed 
-- Needs inserts and python code
-
+# Status
+### Python Code
+- Needs to be added and reviewed
+### SQL
+- Needs Insert commands (see below for possible code)
+- Needs Tables changed/tweaked to match current ERD
+- Needs entities to match word Doc
+- Needs final review
 ## What Inserts might look like?
     -- Insert into Destination table
     INSERT INTO Destination (destination_name) VALUES
