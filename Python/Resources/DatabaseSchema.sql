@@ -14,7 +14,7 @@ DROP TABLE IF EXISTS Product;
 
 
 -- Trip table
-CREATE TABLE Trip (
+CREATE TABLE Trips (
     trip_id INT AUTO_INCREMENT NOT NULL,
     trip_name VARCHAR(64) NOT NULL,
     start_date DATE NOT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE Trip (
 );
 
 -- Guide table
-CREATE TABLE Guide (
+CREATE TABLE Guides (
     guide_id INT AUTO_INCREMENT NOT NULL,
     guide_name VARCHAR(64) NOT NULL,
     specialization VARCHAR(64) NOT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE Guide (
 );
 
 -- Airfare table
-CREATE TABLE Airfare (
+CREATE TABLE Airfares (
     airfare_id INT AUTO_INCREMENT NOT NULL,
     trip_id INT NOT NULL,
     PRIMARY KEY(airfare_id),
@@ -51,7 +51,7 @@ CREATE TABLE Airfare (
 );
 
 -- Employee table
-CREATE TABLE Employee (
+CREATE TABLE Employees (
     employee_id INT AUTO_INCREMENT NOT NULL,
     employee_name VARCHAR(64) NOT NULL,
     position VARCHAR(64) NOT NULL,
@@ -65,14 +65,14 @@ CREATE TABLE Employee (
 );
 
 -- Destination table
-CREATE TABLE Destination (
+CREATE TABLE Destinations (
     destination_id INT AUTO_INCREMENT NOT NULL,
     destination_name VARCHAR(64) NOT NULL,
     PRIMARY KEY(destination_id)
 );
 
 -- Customer table
-CREATE TABLE Customer (
+CREATE TABLE Customers (
     customer_id INT AUTO_INCREMENT NOT NULL,
     customer_name VARCHAR(64) NOT NULL,
     email VARCHAR(64) NOT NULL,
@@ -80,21 +80,13 @@ CREATE TABLE Customer (
 );
 
 -- Registration table
-CREATE TABLE Registration (
+CREATE TABLE Registrations (
     registration_id INT AUTO_INCREMENT NOT NULL,
     trip_id INT NOT NULL,
     customer_id INT NOT NULL,
     PRIMARY KEY(registration_id),
     FOREIGN KEY (trip_id) REFERENCES Trip(trip_id),
     FOREIGN KEY (customer_id) REFERENCES Customer(customer_id)
-);
-
--- Website table
-CREATE TABLE Website (
-    website_id INT AUTO_INCREMENT NOT NULL,
-    website_name VARCHAR(64) NOT NULL,
-    url VARCHAR(64) NOT NULL,
-    PRIMARY KEY(website_id)
 );
 
 -- Marketing table
@@ -114,7 +106,7 @@ CREATE TABLE Equipment (
 );
 
 -- Product table
-CREATE TABLE Product (
+CREATE TABLE Products (
     product_id INT AUTO_INCREMENT NOT NULL,
     product_name VARCHAR(64) NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
