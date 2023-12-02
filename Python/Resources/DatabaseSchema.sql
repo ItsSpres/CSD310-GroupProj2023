@@ -1,3 +1,5 @@
+CREATE DATABASE OutlandAdventures;
+
 USE OutlandAdventures;
 -- drop database user if exists
 DROP USER IF EXISTS 'OutlandAdventures_user'@'localhost';
@@ -68,7 +70,8 @@ CREATE TABLE Registration (
 -- Customer table
 CREATE TABLE Customer (
     customer_id INT AUTO_INCREMENT NOT NULL,
-    customer_name VARCHAR(64) NOT NULL,
+    customer_fname VARCHAR(64) NOT NULL,
+    customer_lname VARCHAR(64) NOT NULL,
     email VARCHAR(64) NOT NULL,
     PRIMARY KEY(customer_id)
 );
@@ -76,7 +79,8 @@ CREATE TABLE Customer (
 -- Employee table
 CREATE TABLE Employee (
     employee_id INT AUTO_INCREMENT NOT NULL,
-    employee_name VARCHAR(64) NOT NULL,
+    employee_fname VARCHAR(64) NOT NULL,
+    employee_lname VARCHAR(64) NOT NULL,
     position VARCHAR(64) NOT NULL,
     equipment_id INT UNIQUE,
     product_id INT UNIQUE,
