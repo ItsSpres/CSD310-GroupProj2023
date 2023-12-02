@@ -1,10 +1,11 @@
 # Status
+FINAL SQL CURRENT IS SHOWING COMMANDS THAT WOULD MATCH CURRENT ERD 12/2
 ### Python Code
 - Needs to be added and reviewed
 ### SQL
 - Consider making new SQL file named differently. Then delete first and second.
 - Needs Insert commands (see below for possible code)
-- Needs Tables changed/tweaked to match current ERD
+✅ Needs Tables changed/tweaked to match current ERD
 - Needs entities to match word Doc
 - Needs final review
 ## What Inserts might look like?
