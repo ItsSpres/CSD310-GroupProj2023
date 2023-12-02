@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS OutlandAdventures
 CREATE DATABASE OutlandAdventures;
 
 USE OutlandAdventures;
