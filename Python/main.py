@@ -5,10 +5,22 @@ from Models.TableEnum import Tables
 
 # This gets every all records from the provided table
 def GetFormattedTable(tableenum):
-    output = db.SelectAll(tableenum)
-    print(f"\n{tableenum.value}")
+    # Display Table Name
+    print(f"\n{tableenum.value.capitalize()}")
 
-    for record in output:
+    # Get and Display column names for the provided table
+    columns = db.getColumnNames(tableenum)
+    columnString = ""
+
+    for column in columns:
+        columnString += f"{column} "
+
+    print(columnString.replace("(","").replace(")","")[:-2])
+
+    # Get and Display records from the provided table
+    records = db.SelectAll(tableenum)
+
+    for record in records:
         i = 0
         stringOutput = ""
 

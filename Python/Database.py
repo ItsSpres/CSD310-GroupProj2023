@@ -53,6 +53,12 @@ class Database:
 
         return output
 
+    def getColumnNames(self, tables):
+        self.cursor.execute("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '" + tables.value + " ' ORDER BY ordinal_position;")
+        output = self.cursor.fetchall()
+
+        return output
+
     # Close the connection
     def Close(self):
         self.db.close()
