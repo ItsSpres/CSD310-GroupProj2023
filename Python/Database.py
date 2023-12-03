@@ -1,7 +1,7 @@
 import mysql.connector
 import mysql.connector.errors
 from Models.TableEnum import Tables
-from errno import errorcode
+from mysql.connector import errorcode
 
 
 class Database:
@@ -10,28 +10,27 @@ class Database:
 
     config = {
         "user": "OutlandAdventures_user",
-        "password": "explore",
+        "password": "Explore",
         "host": "127.0.0.1",
         "database": "outlandadventures",
         "raise_on_warnings": True
     }
 
-    """
-    try:
-        db = mysql.connector.connect(**config)
-        print(
-            "\n Database user {} connected to MySQL on host {} with database {}".format(config["user"], config["host"],
-                                                                                        config["database"]))
-        # input("\n\n Press Any key to continue")
-
-    except mysql.connector.Error as err:
-        if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-            print("  The supplied u")
-    """
-
     # Constructor, runs on initialization
     def __init__(self) -> None:
-        self.db = mysql.connector.connect(**self.config)
+        # Try to connect to the database, else display an error message
+        try:
+            self.db = mysql.connector.connect(**self.config)
+        except mysql.connector.Error as err:
+            if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+                print("The supplied username or password are invalid")
+            elif err.errno == errorcode.ER_BAD_DB_ERROR:
+                print("The specified database does not exist")
+            else:
+                print(err)
+
+            raise Exception("An error occured while connecting to the database")
+
         self.cursor = self.db.cursor()
 
     # Read and execute each statement in the DatabaseSchema
@@ -47,7 +46,7 @@ class Database:
                 print(type(err))
                 print(err)
 
-    # Select All records from the provided table
+    # Select All records from the provided table.
     def SelectAll(self, tables):
         self.cursor.execute("SELECT * FROM " + tables.value)
         output = self.cursor.fetchall()

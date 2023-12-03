@@ -16,4 +16,7 @@ except Exception as err:
     print(err)
 
 finally:
-    db.Close()
+    try:
+        db.Close()
+    except:
+        print("The Database failed to close due to it never being created.")
