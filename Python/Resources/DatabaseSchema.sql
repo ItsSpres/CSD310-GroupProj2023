@@ -1,26 +1,28 @@
-DROP DATABASE IF EXISTS OutlandAdventures;
-CREATE DATABASE OutlandAdventures;
+ -- DROP DATABASE IF EXISTS OutlandAdventures;
+ -- CREATE DATABASE OutlandAdventures;
 
-USE OutlandAdventures;
+ -- USE OutlandAdventures;
 -- drop database user if exists
-DROP USER IF EXISTS 'OutlandAdventures_user'@'localhost';
+-- DROP USER IF EXISTS 'OutlandAdventures_user'@'localhost';
 
 -- create movies_user and grant them all privileges to the movies database
-CREATE USER 'OutlandAdventures_user'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Explore';
+-- CREATE USER 'OutlandAdventures_user'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Explore';
 
 -- grant all privileges to the movies database to user movies_user on localhost
-GRANT ALL PRIVILEGES ON OutlandAdventures.* TO 'OutlandAdventures_user'@'localhost';
+-- GRANT ALL PRIVILEGES ON OutlandAdventures.* TO 'OutlandAdventures_user'@'localhost';
+
+SET foreign_key_checks = 0;
 
 -- Drop tables if they exist
-DROP TABLE IF EXISTS Registration;
-DROP TABLE IF EXISTS Customer;
-DROP TABLE IF EXISTS Trip;
-DROP TABLE IF EXISTS Airfare;
-DROP TABLE IF EXISTS Employee;
-DROP TABLE IF EXISTS Destination;
-DROP TABLE IF EXISTS Marketing;
-DROP TABLE IF EXISTS Equipment;
-DROP TABLE IF EXISTS Product;
+DROP TABLE IF EXISTS registration;
+DROP TABLE IF EXISTS customer;
+DROP TABLE IF EXISTS airfare;
+DROP TABLE IF EXISTS trip;
+DROP TABLE IF EXISTS employee;
+DROP TABLE IF EXISTS destination;
+DROP TABLE IF EXISTS marketing;
+DROP TABLE IF EXISTS equipment;
+DROP TABLE IF EXISTS product;
 
 -- Destination table
 CREATE TABLE Destination (
@@ -38,7 +40,7 @@ CREATE TABLE Airfare (
 );
 
 -- Trip table
-CREATE TABLE Trip (
+CREATE TABLE trip (
     trip_id INT AUTO_INCREMENT NOT NULL,
     trip_name VARCHAR(64) NOT NULL,
     start_date DATE NOT NULL,
@@ -219,24 +221,22 @@ INSERT INTO Registration(trip_id, registration_date, customer_id)
 
 
 #Trip Table Data:
-INSERT INTO Trip(trip_name, start_date, end_date, trip_category, destination_id, employee_id)
+INSERT INTO trip(trip_name, start_date, end_date, trip_category, destination_id, employee_id)
     VALUES("Onward Climb Guide", ('2023-01-01'), ('2023-01-16'),"Hiking", 3, 3);
-
-INSERT INTO Trip(trip_name, start_date, end_date, trip_category, destination_id, employee_id)
+INSERT INTO trip(trip_name, start_date, end_date, trip_category, destination_id, employee_id)
     VALUES("Bucketlist Campers Guide", ('2021-03-23'),('2021-04-02'), "Camping", 2 ,3);
-INSERT INTO Trip(trip_name, start_date, end_date, trip_category, destination_id, employee_id)
+INSERT INTO trip(trip_name, start_date, end_date, trip_category, destination_id, employee_id)
     VALUES("Tent & Trails Guide",('2022-06-12'), ('2022-06-12'),"Camping",1,4);
-INSERT INTO Trip(trip_name, start_date, end_date, trip_category, destination_id, employee_id)
+INSERT INTO trip(trip_name, start_date, end_date, trip_category, destination_id, employee_id)
     VALUES("Outdoor Odyssey Guide",('2024-04-07'),('2022-04-15'),"Hiking",4,3);
-INSERT INTO Trip(trip_name, start_date, end_date, trip_category, destination_id, employee_id)
+INSERT INTO trip(trip_name, start_date, end_date, trip_category, destination_id, employee_id)
     VALUES("TrekTopia Tour Guide",('2023-12-01'),('2023-12-07'),"Hiking",6,4);
-INSERT INTO Trip(trip_name, start_date, end_date, trip_category, destination_id, employee_id)
+INSERT INTO trip(trip_name, start_date, end_date, trip_category, destination_id, employee_id)
     VALUES("Camp The Woods",('2024-06-17'),('2024-06-29'),"Camping",5 ,4);
 
 
 
 
-Show tables;
 
 
 
@@ -244,13 +244,12 @@ Show tables;
 ALTER TABLE Employee ADD FOREIGN KEY (equipment_id) REFERENCES Equipment(equipment_id);
 ALTER TABLE Employee ADD FOREIGN KEY (product_id) REFERENCES Product(product_id);
 ALTER TABLE Employee ADD FOREIGN KEY (marketing_id) REFERENCES Marketing(marketing_id);
-ALTER TABLE Registration ADD FOREIGN KEY (trip_id) REFERENCES Trip(trip_id);
+ALTER TABLE Registration ADD FOREIGN KEY (trip_id) REFERENCES trip(trip_id);
 ALTER TABLE Registration ADD FOREIGN KEY (customer_id) REFERENCES Customer(customer_id);
-ALTER TABLE Trip ADD FOREIGN KEY (destination_id) REFERENCES Destination(destination_id);
-ALTER TABLE Trip ADD FOREIGN KEY (airfare_id) REFERENCES Airfare(airfare_id);
-ALTER TABLE Trip ADD FOREIGN KEY (equipment_id) REFERENCES Equipment(equipment_id);
-ALTER TABLE Trip ADD FOREIGN KEY (product_id) REFERENCES Product(product_id);
-ALTER TABLE Airfare ADD FOREIGN KEY (trip_id) REFERENCES Trip(trip_id);
+ALTER TABLE trip ADD FOREIGN KEY (destination_id) REFERENCES Destination(destination_id);
+ALTER TABLE trip ADD FOREIGN KEY (airfare_id) REFERENCES Airfare(airfare_id);
+ALTER TABLE trip ADD FOREIGN KEY (equipment_id) REFERENCES Equipment(equipment_id);
+ALTER TABLE trip ADD FOREIGN KEY (product_id) REFERENCES Product(product_id);
+ALTER TABLE Airfare ADD FOREIGN KEY (trip_id) REFERENCES trip(trip_id);
 
-
-SELECT * FROM Employee
+SET foreign_key_checks = 1;

@@ -1,6 +1,8 @@
 import mysql.connector
+import mysql.connector.errors
 from Models.TableEnum import Tables
 from errno import errorcode
+
 
 class Database:
     db = None
@@ -8,12 +10,13 @@ class Database:
 
     config = {
         "user": "OutlandAdventures_user",
-        "password": "Explore",
+        "password": "explore",
         "host": "127.0.0.1",
-        "database": "OutlandAdventures",
+        "database": "outlandadventures",
         "raise_on_warnings": True
     }
 
+    """
     try:
         db = mysql.connector.connect(**config)
         print(
@@ -24,7 +27,9 @@ class Database:
     except mysql.connector.Error as err:
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
             print("  The supplied u")
+    """
 
+    # Constructor, runs on initialization
     def __init__(self) -> None:
         self.db = mysql.connector.connect(**self.config)
         self.cursor = self.db.cursor()
@@ -35,11 +40,16 @@ class Database:
         sqlStatements = reader.read().split(';')
 
         for statement in sqlStatements:
-            self.cursor.execute(statement)
+            try:
+                self.cursor.execute(statement)
+                self.cursor.reset()
+            except Exception as err:
+                print(type(err))
+                print(err)
 
     # Select All records from the provided table
-    def SelectAll(self, Tables):
-        self.cursor.execute(f"SELECT * FROM {Tables}")
+    def SelectAll(self, tables):
+        self.cursor.execute("SELECT * FROM " + tables.value)
         output = self.cursor.fetchall()
 
         return output
