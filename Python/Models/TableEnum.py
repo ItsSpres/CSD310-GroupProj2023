@@ -1,6 +1,7 @@
 from enum import Enum
 
 
+# List of all valid tables
 class Tables(Enum):
     airfare = "airfare"
     destination = "destination"
@@ -9,4 +10,6 @@ class Tables(Enum):
     marketing = "marketing"
     trip = "trip"
     guide = "guide"
-
+    customer = "customer"
+    registration = "registration"
+    product = "product"
