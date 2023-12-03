@@ -54,9 +54,9 @@ class Database:
         return output
 
     def getColumnNames(self, tables):
-        self.cursor.execute("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '" + tables.value + " ' ORDER BY ordinal_position;")
+        self.cursor.execute(f'SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = "{tables.value}" AND TABLE_SCHEMA = "outlandadventures" ORDER BY ORDINAL_POSITION')
         output = self.cursor.fetchall()
-
+        output = [column[0] for column in output]
         return output
 
     # Close the connection

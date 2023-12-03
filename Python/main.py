@@ -1,36 +1,27 @@
 from Database import Database
 from enum import Enum
 from Models.TableEnum import Tables
+from prettytable import PrettyTable
 
-
-# This gets every all records from the provided table
+# This gets every all records from the provided table and prints them in a pretty table
 def GetFormattedTable(tableenum):
-    # Display Table Name
-    print(f"\n{tableenum.value.capitalize()}")
+    # Print the table name
+    print(f"{tableenum.value.upper()} TABLE")
+    # Create pretty tables with the information in the database
+    table = PrettyTable()
+    table.field_names = db.getColumnNames(tableenum)
 
-    # Get and Display column names for the provided table
-    columns = db.getColumnNames(tableenum)
-    columnString = ""
+    # Set the alignment of the table to left
+    table.align = "l"
 
-    for column in columns:
-        columnString += f"{column} "
-
-    print(columnString.replace("(","").replace(")","")[:-2])
-
-    # Get and Display records from the provided table
+    # Get all records from the table
     records = db.SelectAll(tableenum)
-
     for record in records:
-        i = 0
-        stringOutput = ""
+        table.add_row(record)
 
-        # get each column in the output
-        while i < len(record):
-            stringOutput += f"{record[i]}, "
-            i += 1
-
-        # Output string minus the extra comma and space
-        print(stringOutput[:-2])
+    # Print the table
+    print(table)
+    print("\n")
 
 
 try:
@@ -47,7 +38,7 @@ try:
     GetFormattedTable(Tables.marketing)
     GetFormattedTable(Tables.equipment)
     GetFormattedTable(Tables.product)
-
+    
 
 except Exception as err:
     print(err)
