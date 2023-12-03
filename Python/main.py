@@ -34,9 +34,11 @@ try:
     GetFormattedTable(Tables.airfare)
     GetFormattedTable(Tables.trip)
     GetFormattedTable(Tables.employee)
+    GetFormattedTable(Tables.guide)
     GetFormattedTable(Tables.destination)
     GetFormattedTable(Tables.marketing)
     GetFormattedTable(Tables.equipment)
+    GetFormattedTable(Tables.rental)
     GetFormattedTable(Tables.product)
     
 

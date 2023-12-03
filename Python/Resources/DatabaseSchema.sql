@@ -23,6 +23,8 @@ DROP TABLE IF EXISTS destination;
 DROP TABLE IF EXISTS marketing;
 DROP TABLE IF EXISTS equipment;
 DROP TABLE IF EXISTS product;
+DROP TABLE IF EXISTS guide;
+DROP TABLE IF EXISTS rental;
 
 -- Destination table
 CREATE TABLE Destination (
@@ -36,6 +38,10 @@ CREATE TABLE Destination (
 CREATE TABLE Airfare (
     airfare_id INT AUTO_INCREMENT NOT NULL,
     trip_id INT UNIQUE NOT NULL,
+    airfare_price DECIMAL(10, 2) NOT NULL,
+    airfare_quantity INT NOT NULL,
+    airfare_description VARCHAR(64) NOT NULL,
+    airfare_flight_number VARCHAR(64) NOT NULL,
     PRIMARY KEY (airfare_id)
 );
 
@@ -85,6 +91,16 @@ CREATE TABLE Employee (
 
 );
 
+-- Guide table
+CREATE TABLE Guide (
+    guide_id INT AUTO_INCREMENT NOT NULL,
+    guide_fname VARCHAR(64) NOT NULL,
+    guide_lname VARCHAR(64) NOT NULL,
+    destination_id INT NOT NULL,
+    employee_id INT NOT NULL,
+    PRIMARY KEY(guide_id)
+);
+
 -- Marketing table
 CREATE TABLE Marketing (
     marketing_id INT AUTO_INCREMENT NOT NULL,
@@ -100,6 +116,16 @@ CREATE TABLE Equipment (
     equipment_name VARCHAR(64) NOT NULL,
     equipment_quantity INT NOT NULL,
     PRIMARY KEY(equipment_id)
+);
+
+-- Rental table
+CREATE TABLE Rental (
+    rental_id INT AUTO_INCREMENT NOT NULL,
+    customer_id INT NOT NULL,
+    equipment_id INT UNIQUE,
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    PRIMARY KEY(rental_id)
 );
 
 -- Product table
@@ -202,7 +228,6 @@ INSERT INTO Product(product_name, product_price, product_quantity)
     VALUES("Hammock", 39.99, 23);
 
 
-
 #Registration Table Data:
 INSERT INTO Registration(trip_id, registration_date, customer_id)
     VALUES(1, ('2022-08-23'), 2);
@@ -216,8 +241,6 @@ INSERT INTO Registration(trip_id, registration_date, customer_id)
     VALUES(4, ('2023-10-10'), 6);
 INSERT INTO Registration(trip_id, registration_date, customer_id)
     VALUES(6,('2023-01-14'), 5);
-
-
 
 
 #Trip Table Data:
@@ -235,17 +258,52 @@ INSERT INTO trip(trip_name, start_date, end_date, trip_category, destination_id,
     VALUES("Camp The Woods",('2024-06-17'),('2024-06-29'),"Camping",5 ,4);
 
 
+#Guide Table Data:
+INSERT INTO Guide(guide_fname, guide_lname, destination_id, employee_id)
+    VALUES("John", "MacNell", 3, 3);
+INSERT INTO Guide(guide_fname, guide_lname, destination_id, employee_id)    
+    VALUES("D.B.", "Marland", 2, 3);
 
 
+#Rental Table Data:
+INSERT INTO Rental(customer_id, equipment_id, start_date, end_date)
+    VALUES(1, 1, ('2022-08-23'), ('2022-08-25'));
+INSERT INTO Rental(customer_id, equipment_id, start_date, end_date)
+    VALUES(2, 2, ('2022-03-19'), ('2022-03-21'));
+INSERT INTO Rental(customer_id, equipment_id, start_date, end_date)
+    VALUES(3, 3, ('2021-01-10'), ('2021-01-12'));
+INSERT INTO Rental(customer_id, equipment_id, start_date, end_date)
+    VALUES(4, 4, ('2023-04-27'), ('2023-04-29'));
+INSERT INTO Rental(customer_id, equipment_id, start_date, end_date)
+    VALUES(5, 5, ('2023-10-10'), ('2023-10-12'));
+INSERT INTO Rental(customer_id, equipment_id, start_date, end_date)
+    VALUES(6, 6, ('2023-01-14'), ('2023-01-16'));
 
 
-
+#Airfare Table Data:
+INSERT INTO Airfare(trip_id, airfare_price, airfare_quantity, airfare_description, airfare_flight_number)
+    VALUES(1, 500.00, 10, "Roundtrip Flight", "AA 123");
+INSERT INTO Airfare(trip_id, airfare_price, airfare_quantity, airfare_description, airfare_flight_number)
+    VALUES(2, 300.00, 10, "Roundtrip Flight", "AA 456");
+INSERT INTO Airfare(trip_id, airfare_price, airfare_quantity, airfare_description, airfare_flight_number)
+    VALUES(3, 200.00, 10, "Roundtrip Flight", "AA 789");
+INSERT INTO Airfare(trip_id, airfare_price, airfare_quantity, airfare_description, airfare_flight_number)
+    VALUES(4, 400.00, 10, "Roundtrip Flight", "AA 101");
+INSERT INTO Airfare(trip_id, airfare_price, airfare_quantity, airfare_description, airfare_flight_number)
+    VALUES(5, 600.00, 10, "Roundtrip Flight", "AA 112");
+INSERT INTO Airfare(trip_id, airfare_price, airfare_quantity, airfare_description, airfare_flight_number)
+    VALUES(6, 700.00, 10, "Roundtrip Flight", "AA 131");
 
 ALTER TABLE Employee ADD FOREIGN KEY (equipment_id) REFERENCES Equipment(equipment_id);
 ALTER TABLE Employee ADD FOREIGN KEY (product_id) REFERENCES Product(product_id);
 ALTER TABLE Employee ADD FOREIGN KEY (marketing_id) REFERENCES Marketing(marketing_id);
 ALTER TABLE Registration ADD FOREIGN KEY (trip_id) REFERENCES trip(trip_id);
 ALTER TABLE Registration ADD FOREIGN KEY (customer_id) REFERENCES Customer(customer_id);
+ALTER TABLE Guide ADD FOREIGN KEY (employee_id) REFERENCES Employee(employee_id);
+ALTER TABLE Guide ADD FOREIGN KEY (destination_id) REFERENCES Destination(destination_id);
+ALTER TABLE rental ADD FOREIGN KEY (equipment_id) REFERENCES Equipment(equipment_id);
+ALTER TABLE rental ADD FOREIGN KEY (customer_id) REFERENCES Customer(customer_id);
+ALTER TABLE trip ADD FOREIGN KEY (employee_id) REFERENCES Employee(employee_id);
 ALTER TABLE trip ADD FOREIGN KEY (destination_id) REFERENCES Destination(destination_id);
 ALTER TABLE trip ADD FOREIGN KEY (airfare_id) REFERENCES Airfare(airfare_id);
 ALTER TABLE trip ADD FOREIGN KEY (equipment_id) REFERENCES Equipment(equipment_id);

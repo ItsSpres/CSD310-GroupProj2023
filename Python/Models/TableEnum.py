@@ -13,3 +13,4 @@ class Tables(Enum):
     customer = "customer"
     registration = "registration"
     product = "product"
+    rental = "rental"
