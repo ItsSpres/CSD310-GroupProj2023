@@ -14,3 +14,13 @@ class Tables(Enum):
     registration = "registration"
     product = "product"
     rental = "rental"
+    orders = "orders"
+
+# List of all destination locations
+class Destinations(Enum):
+    destination1 = "Spituk Gompa"
+    destination2 = "Dubai Desert Safari"
+    destination3 = "Nandi Hills"
+    destination4 = "Grand Canyon"
+    destination5 = "Iceland blue lagoon"
+    destination6 = "Cinque Terre"

@@ -25,6 +25,7 @@ DROP TABLE IF EXISTS equipment;
 DROP TABLE IF EXISTS product;
 DROP TABLE IF EXISTS guide;
 DROP TABLE IF EXISTS rental;
+DROP TABLE IF EXISTS orders;
 
 -- Destination table
 CREATE TABLE Destination (
@@ -115,6 +116,7 @@ CREATE TABLE Equipment (
     equipment_id INT AUTO_INCREMENT NOT NULL,
     equipment_name VARCHAR(64) NOT NULL,
     equipment_quantity INT NOT NULL,
+    equipment_age_days INT NOT NULL,
     PRIMARY KEY(equipment_id)
 );
 
@@ -134,7 +136,17 @@ CREATE TABLE Product (
     product_name VARCHAR(64) NOT NULL,
     product_price DECIMAL(10, 2) NOT NULL,
     product_quantity INT NOT NULL,
+    product_age_days INT NOT NULL,
     PRIMARY KEY(product_id)
+);
+
+-- Orders table
+CREATE TABLE Orders (
+    order_id INT AUTO_INCREMENT NOT NULL,
+    customer_id INT NOT NULL,
+    product_id INT NOT NULL,
+    order_date DATE NOT NULL,
+    PRIMARY KEY(order_id)
 );
 
 #Customer Table Data:
@@ -185,18 +197,18 @@ INSERT INTO DESTINATION(destination_name, destination_description)
     VALUES("Cinque Terre","Hike along the cliffside trail through 5 coastal villages.");
 
 #Equipment Table Data:
-INSERT INTO Equipment(equipment_name, equipment_quantity)
-    VALUES("Tent", 03);
-INSERT INTO Equipment(equipment_name,equipment_quantity)
-    VALUES("Lantern", 13);
-INSERT INTO Equipment(equipment_name,equipment_quantity)
-    VALUES("Camp Stove", 6);
-INSERT INTO Equipment(equipment_name,equipment_quantity)
-    VALUES("Flashlight", 35);
-INSERT INTO Equipment(equipment_name,equipment_quantity)
-    VALUES("Cooler", 20);
-INSERT INTO Equipment(equipment_name,equipment_quantity)
-    VALUES("First Aid Kit", 16);
+INSERT INTO Equipment(equipment_name, equipment_quantity, equipment_age_days)
+    VALUES("Tent", 03, 300);
+INSERT INTO Equipment(equipment_name,equipment_quantity, equipment_age_days)
+    VALUES("Lantern", 13, 200);
+INSERT INTO Equipment(equipment_name,equipment_quantity, equipment_age_days)
+    VALUES("Camp Stove", 6, 100);
+INSERT INTO Equipment(equipment_name,equipment_quantity, equipment_age_days)
+    VALUES("Flashlight", 35, 1700);
+INSERT INTO Equipment(equipment_name,equipment_quantity, equipment_age_days)
+    VALUES("Cooler", 20, 500);
+INSERT INTO Equipment(equipment_name,equipment_quantity, equipment_age_days)
+    VALUES("First Aid Kit", 16, 1600);
 
 #Marketing Table Data:
 INSERT INTO Marketing(marketing_strategy, marketing_budget, marketing_campaign)
@@ -214,18 +226,18 @@ INSERT INTO Marketing(marketing_strategy, marketing_budget, marketing_campaign)
 
 
 #Product Table Data:
-INSERT INTO Product(product_name, product_price, product_quantity)
-    VALUES("Outdoor Hiking Backpack", 45.00, 12);
-INSERT INTO Product(product_name, product_price, product_quantity)
-    VALUES("Trekking Poles", 39.99, 10);
-INSERT INTO Product(product_name, product_price, product_quantity)
-    VALUES("Tent", 248.39, 15);
-INSERT INTO Product(product_name, product_price, product_quantity)
-    VALUES("Camping Survival Kit", 45.87, 23);
-INSERT INTO Product(product_name, product_price, product_quantity)
-    VALUES("Cooler", 179.99, 10);
-INSERT INTO Product(product_name, product_price, product_quantity)
-    VALUES("Hammock", 39.99, 23);
+INSERT INTO Product(product_name, product_price, product_quantity, product_age_days)
+    VALUES("Outdoor Hiking Backpack", 45.00, 12, 100);
+INSERT INTO Product(product_name, product_price, product_quantity, product_age_days)
+    VALUES("Trekking Poles", 39.99, 10, 200);
+INSERT INTO Product(product_name, product_price, product_quantity, product_age_days)
+    VALUES("Tent", 248.39, 15, 300);
+INSERT INTO Product(product_name, product_price, product_quantity, product_age_days)
+    VALUES("Camping Survival Kit", 45.87, 23, 200);
+INSERT INTO Product(product_name, product_price, product_quantity, product_age_days)
+    VALUES("Cooler", 179.99, 10, 250);
+INSERT INTO Product(product_name, product_price, product_quantity, product_age_days)
+    VALUES("Hammock", 39.99, 23, 99);
 
 
 #Registration Table Data:
@@ -241,6 +253,10 @@ INSERT INTO Registration(trip_id, registration_date, customer_id)
     VALUES(4, ('2023-10-10'), 6);
 INSERT INTO Registration(trip_id, registration_date, customer_id)
     VALUES(6,('2023-01-14'), 5);
+INSERT INTO Registration(trip_id, registration_date, customer_id)
+    VALUES(1, ('2022-03-23'), 1);
+INSERT INTO Registration(trip_id, registration_date, customer_id)
+    VALUES(1, ('2022-08-23'), 2);
 
 
 #Trip Table Data:
@@ -294,6 +310,20 @@ INSERT INTO Airfare(trip_id, airfare_price, airfare_quantity, airfare_descriptio
 INSERT INTO Airfare(trip_id, airfare_price, airfare_quantity, airfare_description, airfare_flight_number)
     VALUES(6, 700.00, 10, "Roundtrip Flight", "AA 131");
 
+#Orders Table Data:
+INSERT INTO Orders(customer_id, product_id, order_date)
+    VALUES(1, 1, ('2022-08-23'));
+INSERT INTO Orders(customer_id, product_id, order_date)
+    VALUES(2, 2, ('2022-03-19'));
+INSERT INTO Orders(customer_id, product_id, order_date)
+    VALUES(3, 3, ('2021-01-10'));
+INSERT INTO Orders(customer_id, product_id, order_date)
+    VALUES(4, 4, ('2023-04-27'));
+INSERT INTO Orders(customer_id, product_id, order_date)
+    VALUES(5, 5, ('2023-10-10'));
+INSERT INTO Orders(customer_id, product_id, order_date)
+    VALUES(6, 6, ('2023-01-14'));
+
 ALTER TABLE Employee ADD FOREIGN KEY (equipment_id) REFERENCES Equipment(equipment_id);
 ALTER TABLE Employee ADD FOREIGN KEY (product_id) REFERENCES Product(product_id);
 ALTER TABLE Employee ADD FOREIGN KEY (marketing_id) REFERENCES Marketing(marketing_id);
@@ -309,5 +339,7 @@ ALTER TABLE trip ADD FOREIGN KEY (airfare_id) REFERENCES Airfare(airfare_id);
 ALTER TABLE trip ADD FOREIGN KEY (equipment_id) REFERENCES Equipment(equipment_id);
 ALTER TABLE trip ADD FOREIGN KEY (product_id) REFERENCES Product(product_id);
 ALTER TABLE Airfare ADD FOREIGN KEY (trip_id) REFERENCES trip(trip_id);
+ALTER TABLE Orders ADD FOREIGN KEY (customer_id) REFERENCES Customer(customer_id);
+ALTER TABLE Orders ADD FOREIGN KEY (product_id) REFERENCES Product(product_id);
 
 SET foreign_key_checks = 1;

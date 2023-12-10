@@ -1,10 +1,10 @@
 from Database import Database
 from enum import Enum
-from Models.TableEnum import Tables
+from Models.TableEnum import Tables, Destinations
 from prettytable import PrettyTable
 
 # This gets every all records from the provided table and prints them in a pretty table
-def GetFormattedTable(tableenum):
+def getFormattedTable(tableenum):
     # Print the table name
     print(f"{tableenum.value.upper()} TABLE")
     # Create pretty tables with the information in the database
@@ -23,24 +23,48 @@ def GetFormattedTable(tableenum):
     print(table)
     print("\n")
 
+# This gets the number of visits to each destination per month and prints them in a pretty table
+def getDestinationVisits():
+    # Print the table name
+    print("DESTINATION VISITS")
+    # Create pretty tables with the information in the database
+    table = PrettyTable()
+    table.field_names = ["Destination", "Month", "Visits"]
+
+    # Set the alignment of the table to left
+    table.align = "l"
+
+    # Get destination names
+    for destination in Destinations:
+        # Get all records from the table
+        records = db.getDestinationVisits(destination.value)
+        for record in records:
+            table.add_row([record[0], record[1], record[2]])
+
+    # Print the table
+    print(table)
+    print("\n")
 
 try:
     db = Database()
     db.BuildDatabase()
 
     # Get tables
-    GetFormattedTable(Tables.registration)
-    GetFormattedTable(Tables.customer)
-    GetFormattedTable(Tables.airfare)
-    GetFormattedTable(Tables.trip)
-    GetFormattedTable(Tables.employee)
-    GetFormattedTable(Tables.guide)
-    GetFormattedTable(Tables.destination)
-    GetFormattedTable(Tables.marketing)
-    GetFormattedTable(Tables.equipment)
-    GetFormattedTable(Tables.rental)
-    GetFormattedTable(Tables.product)
+    getFormattedTable(Tables.registration)
+    getFormattedTable(Tables.customer)
+    getFormattedTable(Tables.airfare)
+    getFormattedTable(Tables.trip)
+    getFormattedTable(Tables.employee)
+    getFormattedTable(Tables.guide)
+    getFormattedTable(Tables.destination)
+    getFormattedTable(Tables.marketing)
+    getFormattedTable(Tables.equipment)
+    getFormattedTable(Tables.rental)
+    getFormattedTable(Tables.product)
+    getFormattedTable(Tables.orders)
     
+    # Get destination visits
+    getDestinationVisits()
 
 except Exception as err:
     print(err)
