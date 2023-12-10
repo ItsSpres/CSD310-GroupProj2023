@@ -59,12 +59,6 @@ class Database:
         output = [column[0] for column in output]
         return output
     
-    # Queries the database for the amount of times a specific destination was visited for each month of the year.
-    def getDestinationVisits(self, destination):
-        self.cursor.execute(f'SELECT destination_name, EXTRACT(MONTH FROM registration_date) AS month, COUNT(*) AS visits FROM registration r JOIN trip t ON r.trip_id = t.trip_id JOIN destination d ON t.destination_id = d.destination_id WHERE destination_name = "{destination}" GROUP BY destination_name, EXTRACT(MONTH FROM registration_date) ORDER BY destination_name,month')
-        output = self.cursor.fetchall()
-        return output
-
     # Close the connection
 
     def Close(self):

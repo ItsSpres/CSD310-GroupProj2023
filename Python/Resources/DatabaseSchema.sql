@@ -119,6 +119,7 @@ CREATE TABLE Equipment (
     equipment_quantity INT NOT NULL,
     equipment_status VARCHAR(20) NOT NULL,
     equipment_ordered_date DATE NOT NULL,
+    equipment_received_date DATE,
     PRIMARY KEY(equipment_id)
 );
 
@@ -200,18 +201,21 @@ INSERT INTO DESTINATION(destination_name, destination_description, destination_c
     VALUES("Cinque Terre","Hike along the cliffside trail through 5 coastal villages.", "Asia");
 
 #Equipment Table Data:
-INSERT INTO Equipment(equipment_name, equipment_quantity, equipment_status, equipment_ordered_date)
-    VALUES("Tent", 03, "Rent", DATE('2023-09-12'));
-INSERT INTO Equipment(equipment_name,equipment_quantity, equipment_status, equipment_ordered_date)
-    VALUES("Lantern", 13, "Purchase", DATE ('2022-10-12'));
-INSERT INTO Equipment(equipment_name,equipment_quantity, equipment_status, equipment_ordered_date)
-    VALUES("Camp Stove", 6, "Rent", DATE('2021-02-21'));
-INSERT INTO Equipment(equipment_name,equipment_quantity, equipment_status, equipment_ordered_date)
-    VALUES("Flashlight", 35, "Rent", DATE('2022-12-13'));
-INSERT INTO Equipment(equipment_name,equipment_quantity, equipment_status, equipment_ordered_date)
-    VALUES("Cooler", 20, "Purchase", DATE('2020-08-21'));
-INSERT INTO Equipment(equipment_name,equipment_quantity, equipment_status, equipment_ordered_date)
-    VALUES("First Aid Kit", 16, "Purchase", DATE('2023-03-21'));
+INSERT INTO Equipment(equipment_name, equipment_quantity, equipment_status, equipment_ordered_date, equipment_received_date)
+    VALUES("Outdoor Hiking Backpack", 12, "In Stock", ('2020-08-23'), ('2020-08-25'));
+INSERT INTO Equipment(equipment_name, equipment_quantity, equipment_status, equipment_ordered_date, equipment_received_date)
+    VALUES("Trekking Poles", 10, "In Stock", ('2020-03-19'), ('2020-03-21'));
+INSERT INTO Equipment(equipment_name, equipment_quantity, equipment_status, equipment_ordered_date, equipment_received_date)
+    VALUES("Tent", 15, "In Stock", ('2021-01-10'), ('2021-01-12'));
+INSERT INTO Equipment(equipment_name, equipment_quantity, equipment_status, equipment_ordered_date, equipment_received_date)
+    VALUES("Camping Survival Kit", 23, "In Stock", ('2022-04-27'), ('2022-04-29'));
+INSERT INTO Equipment(equipment_name, equipment_quantity, equipment_status, equipment_ordered_date, equipment_received_date)
+    VALUES("Cooler", 10, "In Stock", ('2022-10-10'), ('2022-10-12'));
+INSERT INTO Equipment(equipment_name, equipment_quantity, equipment_status, equipment_ordered_date, equipment_received_date)
+    VALUES("Hammock", 23, "In Stock", ('2022-01-14'), ('2022-01-16'));
+INSERT INTO Equipment(equipment_name, equipment_quantity, equipment_status, equipment_ordered_date, equipment_received_date)
+    VALUES("Outdoor Hiking Backpack", 12, "In Stock", ('2010-08-23'), ('2010-08-25'));
+
 
 #Marketing Table Data:
 INSERT INTO Marketing(marketing_strategy, marketing_budget, marketing_campaign)
@@ -256,6 +260,8 @@ INSERT INTO Registration(trip_id, registration_date, customer_id)
     VALUES(4, ('2023-10-10'), 6);
 INSERT INTO Registration(trip_id, registration_date, customer_id)
     VALUES(6,('2023-01-14'), 5);
+INSERT INTO Registration(trip_id, registration_date, customer_id)
+    VALUES(1, ('2020-08-23'), 2);
 
 
 #Trip Table Data:
@@ -271,6 +277,8 @@ INSERT INTO trip(trip_name, start_date, end_date, trip_category, destination_id,
     VALUES("TrekTopia Tour Guide",('2023-12-01'),('2023-12-07'),"Hiking",6,4);
 INSERT INTO trip(trip_name, start_date, end_date, trip_category, destination_id, employee_id)
     VALUES("Camp The Woods",('2024-06-17'),('2024-06-29'),"Camping",5 ,4);
+INSERT INTO trip(trip_name, start_date, end_date, trip_category, destination_id, employee_id)
+    VALUES("Onward Climb Guide",('2025-01-01'),('2025-01-16'),"Hiking",3,3);
 
 
 #Guide Table Data:
