@@ -66,5 +66,6 @@ class Database:
         return output
 
     # Close the connection
+
     def Close(self):
         self.db.close()

@@ -9,7 +9,7 @@ class Tables(Enum):
     equipment = "equipment"
     marketing = "marketing"
     trip = "trip"
-    guide = "guide"
+    guide ="guide"
     customer = "customer"
     registration = "registration"
     product = "product"

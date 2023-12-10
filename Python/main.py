@@ -74,3 +74,6 @@ finally:
         db.Close()
     except:
         print("The Database failed to close due to it never being created.")
+
+
+
