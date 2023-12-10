@@ -31,6 +31,7 @@ CREATE TABLE Destination (
     destination_id INT AUTO_INCREMENT NOT NULL,
     destination_name VARCHAR(64) NOT NULL,
     destination_description VARCHAR(64),
+    destination_country VARCHAR(20) NOT NULL,
     PRIMARY KEY (destination_id)
 );
 
@@ -115,6 +116,7 @@ CREATE TABLE Equipment (
     equipment_id INT AUTO_INCREMENT NOT NULL,
     equipment_name VARCHAR(64) NOT NULL,
     equipment_quantity INT NOT NULL,
+    equipment_status VARCHAR(20) NOT NULL,
     PRIMARY KEY(equipment_id)
 );
 
@@ -134,6 +136,7 @@ CREATE TABLE Product (
     product_name VARCHAR(64) NOT NULL,
     product_price DECIMAL(10, 2) NOT NULL,
     product_quantity INT NOT NULL,
+    product_sales DOUBLE,
     PRIMARY KEY(product_id)
 );
 
@@ -171,32 +174,32 @@ INSERT INTO Employee(employee_fname, employee_lname, employee_nickname, position
 
 
 #Destination Table Data:
-INSERT INTO DESTINATION(destination_name, destination_description)
-    VALUES("Spituk Gompa","An Iconic Hilltop Monastery");
-INSERT INTO DESTINATION(destination_name, destination_description)
-    VALUES("Dubai Desert Safari","Exciting Desert Adventures");
-INSERT INTO DESTINATION(destination_name, destination_description)
-    VALUES("Nandi Hills","An ancient hill fortress scattered with monuments and shrines.");
-INSERT INTO DESTINATION(destination_name, destination_description)
-    VALUES("Grand Canyon","The Grand Canyon of the Colorado River ");
-INSERT INTO DESTINATION(destination_name, destination_description)
-    VALUES("Iceland Blue Lagoon","The world''s largest geothermal pool");
-INSERT INTO DESTINATION(destination_name, destination_description)
-    VALUES("Cinque Terre","Hike along the cliffside trail through 5 coastal villages.");
+INSERT INTO DESTINATION(destination_name, destination_description, destination_country)
+    VALUES("Spituk Gompa","An Iconic Hilltop Monastery", "Asia");
+INSERT INTO DESTINATION(destination_name, destination_description, destination_country)
+    VALUES("Dubai Desert Safari","Exciting Desert Adventures","Africa");
+INSERT INTO DESTINATION(destination_name, destination_description, destination_country)
+    VALUES("Nandi Hills","An ancient hill fortress scattered with monuments and shrines.","Southern Europe");
+INSERT INTO DESTINATION(destination_name, destination_description, destination_country)
+    VALUES("Grand Canyon","The Grand Canyon of the Colorado River ", "Asia");
+INSERT INTO DESTINATION(destination_name, destination_description, destination_country)
+    VALUES("Iceland Blue Lagoon","The world''s largest geothermal pool", "Southern Europe");
+INSERT INTO DESTINATION(destination_name, destination_description, destination_country)
+    VALUES("Cinque Terre","Hike along the cliffside trail through 5 coastal villages.", "Asia");
 
 #Equipment Table Data:
-INSERT INTO Equipment(equipment_name, equipment_quantity)
-    VALUES("Tent", 03);
-INSERT INTO Equipment(equipment_name,equipment_quantity)
-    VALUES("Lantern", 13);
-INSERT INTO Equipment(equipment_name,equipment_quantity)
-    VALUES("Camp Stove", 6);
-INSERT INTO Equipment(equipment_name,equipment_quantity)
-    VALUES("Flashlight", 35);
-INSERT INTO Equipment(equipment_name,equipment_quantity)
-    VALUES("Cooler", 20);
-INSERT INTO Equipment(equipment_name,equipment_quantity)
-    VALUES("First Aid Kit", 16);
+INSERT INTO Equipment(equipment_name, equipment_quantity, equipment_status)
+    VALUES("Tent", 03, "Rent");
+INSERT INTO Equipment(equipment_name,equipment_quantity, equipment_status)
+    VALUES("Lantern", 13, "Purchase");
+INSERT INTO Equipment(equipment_name,equipment_quantity, equipment_status)
+    VALUES("Camp Stove", 6, "Rent");
+INSERT INTO Equipment(equipment_name,equipment_quantity, equipment_status)
+    VALUES("Flashlight", 35, "Rent");
+INSERT INTO Equipment(equipment_name,equipment_quantity, equipment_status)
+    VALUES("Cooler", 20, "Purchase");
+INSERT INTO Equipment(equipment_name,equipment_quantity, equipment_status)
+    VALUES("First Aid Kit", 16, "Purchase");
 
 #Marketing Table Data:
 INSERT INTO Marketing(marketing_strategy, marketing_budget, marketing_campaign)
@@ -214,18 +217,18 @@ INSERT INTO Marketing(marketing_strategy, marketing_budget, marketing_campaign)
 
 
 #Product Table Data:
-INSERT INTO Product(product_name, product_price, product_quantity)
-    VALUES("Outdoor Hiking Backpack", 45.00, 12);
-INSERT INTO Product(product_name, product_price, product_quantity)
-    VALUES("Trekking Poles", 39.99, 10);
-INSERT INTO Product(product_name, product_price, product_quantity)
-    VALUES("Tent", 248.39, 15);
-INSERT INTO Product(product_name, product_price, product_quantity)
-    VALUES("Camping Survival Kit", 45.87, 23);
-INSERT INTO Product(product_name, product_price, product_quantity)
-    VALUES("Cooler", 179.99, 10);
-INSERT INTO Product(product_name, product_price, product_quantity)
-    VALUES("Hammock", 39.99, 23);
+INSERT INTO Product(product_name, product_price, product_quantity, product_sales)
+    VALUES("Outdoor Hiking Backpack", 45.00, 12, 940.00);
+INSERT INTO Product(product_name, product_price, product_quantity, product_sales)
+    VALUES("Trekking Poles", 39.99, 10, 1503.30);
+INSERT INTO Product(product_name, product_price, product_quantity, product_sales)
+    VALUES("Tent", 248.39, 15, 0.00);
+INSERT INTO Product(product_name, product_price, product_quantity, product_sales)
+    VALUES("Camping Survival Kit", 45.87, 23, 458.73);
+INSERT INTO Product(product_name, product_price, product_quantity, product_sales)
+    VALUES("Cooler", 179.99, 10, 203.23);
+INSERT INTO Product(product_name, product_price, product_quantity, product_sales)
+    VALUES("Hammock", 39.99, 23, 439.09);
 
 
 #Registration Table Data:
