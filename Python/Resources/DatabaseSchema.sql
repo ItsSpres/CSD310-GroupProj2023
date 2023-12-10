@@ -117,6 +117,7 @@ CREATE TABLE Equipment (
     equipment_name VARCHAR(64) NOT NULL,
     equipment_quantity INT NOT NULL,
     equipment_status VARCHAR(20) NOT NULL,
+    equipment_ordered_date DATE NOT NULL,
     PRIMARY KEY(equipment_id)
 );
 
@@ -188,18 +189,18 @@ INSERT INTO DESTINATION(destination_name, destination_description, destination_c
     VALUES("Cinque Terre","Hike along the cliffside trail through 5 coastal villages.", "Asia");
 
 #Equipment Table Data:
-INSERT INTO Equipment(equipment_name, equipment_quantity, equipment_status)
-    VALUES("Tent", 03, "Rent");
-INSERT INTO Equipment(equipment_name,equipment_quantity, equipment_status)
-    VALUES("Lantern", 13, "Purchase");
-INSERT INTO Equipment(equipment_name,equipment_quantity, equipment_status)
-    VALUES("Camp Stove", 6, "Rent");
-INSERT INTO Equipment(equipment_name,equipment_quantity, equipment_status)
-    VALUES("Flashlight", 35, "Rent");
-INSERT INTO Equipment(equipment_name,equipment_quantity, equipment_status)
-    VALUES("Cooler", 20, "Purchase");
-INSERT INTO Equipment(equipment_name,equipment_quantity, equipment_status)
-    VALUES("First Aid Kit", 16, "Purchase");
+INSERT INTO Equipment(equipment_name, equipment_quantity, equipment_status, equipment_ordered_date)
+    VALUES("Tent", 03, "Rent", DATE('2023-09-12'));
+INSERT INTO Equipment(equipment_name,equipment_quantity, equipment_status, equipment_ordered_date)
+    VALUES("Lantern", 13, "Purchase", DATE ('2022-10-12'));
+INSERT INTO Equipment(equipment_name,equipment_quantity, equipment_status, equipment_ordered_date)
+    VALUES("Camp Stove", 6, "Rent", DATE('2021-02-21'));
+INSERT INTO Equipment(equipment_name,equipment_quantity, equipment_status, equipment_ordered_date)
+    VALUES("Flashlight", 35, "Rent", DATE('2022-12-13'));
+INSERT INTO Equipment(equipment_name,equipment_quantity, equipment_status, equipment_ordered_date)
+    VALUES("Cooler", 20, "Purchase", DATE('2020-08-21'));
+INSERT INTO Equipment(equipment_name,equipment_quantity, equipment_status, equipment_ordered_date)
+    VALUES("First Aid Kit", 16, "Purchase", DATE('2023-03-21'));
 
 #Marketing Table Data:
 INSERT INTO Marketing(marketing_strategy, marketing_budget, marketing_campaign)

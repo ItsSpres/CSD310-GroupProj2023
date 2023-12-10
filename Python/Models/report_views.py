@@ -1,4 +1,7 @@
 import mysql.connector
+from datetime import date
+
+# Returns the current local date
 
 def display_report_countries(host, user, password, database, sql_query):
     db = mysql.connector.connect(
@@ -16,7 +19,9 @@ def display_report_countries(host, user, password, database, sql_query):
     # Get the column names
     column_names = [i[0] for i in cursor.description]
     print("\n")
-    print("\t\tCountries Report:  \n");
+    today = date.today()
+    print("Date of Report: ", today)
+    print("\n\t\tCountries Report: \n");
 
     # Calculate the maximum length of each column
     max_lengths = [len(name) for name in column_names]
