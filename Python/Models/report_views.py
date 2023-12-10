@@ -16,7 +16,7 @@ def display_report_countries(host, user, password, database, sql_query):
     # Get the column names
     column_names = [i[0] for i in cursor.description]
     print("\n")
-    print("Countries Report: \n");
+    print("\t\tCountries Report:  \n");
 
     # Calculate the maximum length of each column
     max_lengths = [len(name) for name in column_names]
@@ -37,7 +37,7 @@ def display_report_countries(host, user, password, database, sql_query):
         for i, value in enumerate(row):
             print(f'{str(value).ljust(max_lengths[i])}', end=' | ')
         print()
-
+    print ("\n******* END OF REPORT *****")
     cursor.close()
     db.close()
 
@@ -72,7 +72,8 @@ def display_report_sales(host, user, password, database, sql_query):
     for row in all_rows:
         for i, value in enumerate(row):
             max_lengths[i] = max(max_lengths[i], len(str(value)))
-    print("Sales Report: \n");
+
+    print("\t\tSales Report:  \n");
     # Print the column headers
     for i, name in enumerate(column_names):
         print(f'{name.ljust(max_lengths[i])}', end=' | ')
@@ -87,6 +88,7 @@ def display_report_sales(host, user, password, database, sql_query):
             print(f'{str(value).ljust(max_lengths[i])}', end=' | ')
         print()
 
+    print("\n******* END OF REPORT *****")
     cursor.close()
     db.close()
 
