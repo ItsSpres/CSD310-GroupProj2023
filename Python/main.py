@@ -23,27 +23,27 @@ def getFormattedTable(tableenum):
     print(table)
     print("\n")
 
-# This gets the number of visits to each destination per month and prints them in a pretty table
-def getDestinationVisits():
-    # Print the table name
-    print("DESTINATION VISITS")
-    # Create pretty tables with the information in the database
-    table = PrettyTable()
-    table.field_names = ["Destination", "Month", "Visits"]
+# # This gets the number of visits to each destination per month and prints them in a pretty table
+# def getDestinationVisits():
+#     # Print the table name
+#     print("DESTINATION VISITS")
+#     # Create pretty tables with the information in the database
+#     table = PrettyTable()
+#     table.field_names = ["Destination", "Month", "Visits"]
 
-    # Set the alignment of the table to left
-    table.align = "l"
+#     # Set the alignment of the table to left
+#     table.align = "l"
 
-    # Get destination names
-    for destination in Destinations:
-        # Get all records from the table
-        records = db.getDestinationVisits(destination.value)
-        for record in records:
-            table.add_row([record[0], record[1], record[2]])
+#     # Get destination names
+#     for destination in Destinations:
+#         # Get all records from the table
+#         records = db.getDestinationVisits(destination.value)
+#         for record in records:
+#             table.add_row([record[0], record[1], record[2]])
 
-    # Print the table
-    print(table)
-    print("\n")
+#     # Print the table
+#     print(table)
+#     print("\n")
 
 try:
     db = Database()
@@ -62,9 +62,6 @@ try:
     getFormattedTable(Tables.rental)
     getFormattedTable(Tables.product)
     getFormattedTable(Tables.orders)
-    
-    # Get destination visits
-    getDestinationVisits()
 
 except Exception as err:
     print(err)

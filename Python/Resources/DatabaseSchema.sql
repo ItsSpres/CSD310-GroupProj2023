@@ -25,6 +25,7 @@ DROP TABLE IF EXISTS equipment;
 DROP TABLE IF EXISTS product;
 DROP TABLE IF EXISTS guide;
 DROP TABLE IF EXISTS rental;
+DROP TABLE IF EXISTS orders;
 
 -- Destination table
 CREATE TABLE Destination (
@@ -139,6 +140,16 @@ CREATE TABLE Product (
     product_quantity INT NOT NULL,
     product_sales DOUBLE,
     PRIMARY KEY(product_id)
+);
+
+-- Orders table
+CREATE TABLE Orders (
+    order_id INT AUTO_INCREMENT NOT NULL,
+    customer_id INT NOT NULL,
+    product_id INT NOT NULL,
+    order_date DATE NOT NULL,
+    order_total DECIMAL(10, 2) NOT NULL,
+    PRIMARY KEY(order_id)
 );
 
 #Customer Table Data:
@@ -298,6 +309,20 @@ INSERT INTO Airfare(trip_id, airfare_price, airfare_quantity, airfare_descriptio
 INSERT INTO Airfare(trip_id, airfare_price, airfare_quantity, airfare_description, airfare_flight_number)
     VALUES(6, 700.00, 10, "Roundtrip Flight", "AA 131");
 
+#Orders Table Data:
+INSERT INTO Orders(customer_id, product_id, order_date, order_total)
+    VALUES(1, 1, ('2022-08-23'), 45.00);
+INSERT INTO Orders(customer_id, product_id, order_date, order_total)
+    VALUES(2, 2, ('2022-03-19'), 39.99);
+INSERT INTO Orders(customer_id, product_id, order_date, order_total)
+    VALUES(3, 3, ('2021-01-10'), 248.39);
+INSERT INTO Orders(customer_id, product_id, order_date, order_total)
+    VALUES(4, 4, ('2023-04-27'), 45.87);
+INSERT INTO Orders(customer_id, product_id, order_date, order_total)
+    VALUES(5, 5, ('2023-10-10'), 179.99);
+INSERT INTO Orders(customer_id, product_id, order_date, order_total)
+    VALUES(6, 6, ('2023-01-14'), 39.99);
+
 ALTER TABLE Employee ADD FOREIGN KEY (equipment_id) REFERENCES Equipment(equipment_id);
 ALTER TABLE Employee ADD FOREIGN KEY (product_id) REFERENCES Product(product_id);
 ALTER TABLE Employee ADD FOREIGN KEY (marketing_id) REFERENCES Marketing(marketing_id);
@@ -313,5 +338,8 @@ ALTER TABLE trip ADD FOREIGN KEY (airfare_id) REFERENCES Airfare(airfare_id);
 ALTER TABLE trip ADD FOREIGN KEY (equipment_id) REFERENCES Equipment(equipment_id);
 ALTER TABLE trip ADD FOREIGN KEY (product_id) REFERENCES Product(product_id);
 ALTER TABLE Airfare ADD FOREIGN KEY (trip_id) REFERENCES trip(trip_id);
+ALTER TABLE Orders ADD FOREIGN KEY (customer_id) REFERENCES Customer(customer_id);
+ALTER TABLE Orders ADD FOREIGN KEY (product_id) REFERENCES Product(product_id);
+
 
 SET foreign_key_checks = 1;
