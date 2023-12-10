@@ -11,7 +11,7 @@ cursor = db.cursor()
 
 
 #report for trips at certain countries
-sql = 'SELECT trip_name AS Trip, d.destination_name AS Location, YEAR(t.end_date) AS Year FROM trip t JOIN Destination d ON t.destination_id = d.destination_id;'
+sql = 'SELECT trip_name AS Trip, d.destination_name AS Location, d.destination_country AS Country, YEAR(t.end_date) AS Year FROM trip t JOIN Destination d ON t.destination_id = d.destination_id;'
 
 cursor.execute(sql)
 all_rows = cursor.fetchall()
