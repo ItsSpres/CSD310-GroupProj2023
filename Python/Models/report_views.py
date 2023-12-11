@@ -78,7 +78,9 @@ def display_report_sales(host, user, password, database, sql_query):
         for i, value in enumerate(row):
             max_lengths[i] = max(max_lengths[i], len(str(value)))
 
-    print("\t\tSales Report:  \n");
+    today = date.today()
+    print("Date of Report: ", today)
+    print("\n\t\tSales Report:  \n");
     # Print the column headers
     for i, name in enumerate(column_names):
         print(f'{name.ljust(max_lengths[i])}', end=' | ')
@@ -124,7 +126,9 @@ def display_equipment_age_report(host, user, password, database, sql_query):
     # Get the column names
     column_names = [i[0] for i in cursor.description]
     print("\n")
-    print("\t\tEquipment Age Report:  \n");
+    today = date.today()
+    print("Date of Report: ", today)
+    print("\n\t\tEquipment Age Report:  \n");
 
     # Calculate the maximum length of each column
     max_lengths = [len(name) for name in column_names]
