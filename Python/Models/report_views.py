@@ -105,7 +105,7 @@ display_report_sales(
     user="OutlandAdventures_user",
     password="Explore",
     database="outlandadventures",
-    sql_query='Select equipment_name AS Product, equipment_price AS Price, equipment_sales AS "Sales Revenue" FROM Equipment;'
+    sql_query='Select equipment_name AS Product, equipment_price AS Price, CONCAT("$ ", FORMAT(equipment_sales, 2)) AS "Sales Revenue" FROM Equipment;'
 
 )
 
@@ -160,5 +160,5 @@ display_equipment_age_report(
     user="OutlandAdventures_user",
     password="Explore",
     database="outlandadventures",
-    sql_query=f'SELECT equipment_name AS Equipment, equipment_ordered_date AS "Ordered Date", equipment_received_date AS "Received Date", DATEDIFF(CURDATE(), equipment_received_date) AS "Age in days", IF(DATEDIFF(CURDATE(), equipment_received_date) > 1825, "*", "") AS "5 Yrs Old or Older" FROM equipment ORDER BY `Age in days` DESC;'
+    sql_query=f'SELECT equipment_name AS Equipment, equipment_ordered_date AS "Ordered Date", equipment_received_date AS "Received Date", DATEDIFF(CURDATE(), equipment_received_date) AS "Age in days", CONCAT("$ ", FORMAT(equipment_sales, 2)) AS "Product Revenue", IF(DATEDIFF(CURDATE(), equipment_received_date) > 1825, "*", "") AS "> 5 Years" FROM equipment ORDER BY `Age in days` DESC;'
 )
