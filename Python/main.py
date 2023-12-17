@@ -41,6 +41,8 @@ try:
     getFormattedTable(Tables.rental)
     getFormattedTable(Tables.product)
     getFormattedTable(Tables.orders)
+    getFormattedTable(Tables.equipmentOrders)
+    getFormattedTable(Tables.tripEquipment)
 
 except Exception as err:
     print(err)

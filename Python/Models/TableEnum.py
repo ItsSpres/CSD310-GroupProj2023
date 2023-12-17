@@ -15,6 +15,8 @@ class Tables(Enum):
     product = "product"
     rental = "rental"
     orders = "orders"
+    tripEquipment = "tripEquipment"
+    equipmentOrders = "equipmentOrders"
 
 # List of all destination locations
 class Destinations(Enum):
