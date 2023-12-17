@@ -56,7 +56,6 @@ CREATE TABLE trip (
     destination_id INT NOT NULL,
     airfare_id INT UNIQUE,
     equipment_id INT,
-    product_id INT,
     employee_id INT NOT NULL,
     PRIMARY KEY(trip_id)
 );
@@ -68,6 +67,7 @@ CREATE TABLE Registration (
     registration_date DATE NOT NULL,
     customer_id INT NOT NULL,
     marketing_campaign varchar(64),
+    equipment_id int,
     PRIMARY KEY(registration_id)
 );
 -- Customer table
@@ -87,7 +87,6 @@ CREATE TABLE Employee (
     employee_nickname VARCHAR(64),
     position VARCHAR(64) NOT NULL,
     equipment_id INT UNIQUE,
-    product_id INT UNIQUE,
     marketing_id INT UNIQUE,
     PRIMARY KEY(employee_id)
 
@@ -196,7 +195,6 @@ INSERT INTO DESTINATION(destination_name, destination_description, destination_c
 INSERT INTO DESTINATION(destination_name, destination_description, destination_country)
     VALUES("Cinque Terre","Hike along the cliffside trail through 5 coastal villages.", "Asia");
 
-#Equipment Table Data:
 
 #Equipment Table Data:
 INSERT INTO Equipment(equipment_name, equipment_price, equipment_sales, equipment_quantity, equipment_status, equipment_ordered_date, equipment_received_date, rental_id)
@@ -237,22 +235,21 @@ INSERT INTO Marketing(marketing_strategy, marketing_budget, marketing_campaign)
 
 
 
-
 #Registration Table Data:
-INSERT INTO Registration(trip_id, registration_date, customer_id, marketing_campaign)
-    VALUES(1, ('2022-08-23'), 2, 'JOINUS2023');
-INSERT INTO Registration(trip_id, registration_date, customer_id, marketing_campaign)
-    VALUES(3,('2022-03-19'), 1, 'ExploreNow23');
-INSERT INTO Registration(trip_id, registration_date, customer_id, marketing_campaign)
-    VALUES(2,('2021-01-10'), 4, '2023Friends');
-INSERT INTO Registration(trip_id, registration_date, customer_id, marketing_campaign)
-    VALUES(5,('2023-04-27'), 3, 'ExploreNow23');
-INSERT INTO Registration(trip_id, registration_date, customer_id, marketing_campaign)
-    VALUES(4, ('2023-10-10'), 6, 'Welcome2023');
-INSERT INTO Registration(trip_id, registration_date, customer_id, marketing_campaign)
-    VALUES(6,('2023-01-14'), 5, 'FBPROMOHIKE23');
-INSERT INTO Registration(trip_id, registration_date, customer_id, marketing_campaign)
-    VALUES(1, ('2020-08-23'), 2, 'READY2HIKE');
+INSERT INTO Registration(trip_id, registration_date, customer_id, marketing_campaign, equipment_id)
+    VALUES(1, ('2022-08-23'), 2, 'JOINUS2023', 3);
+INSERT INTO Registration(trip_id, registration_date, customer_id, marketing_campaign, equipment_id)
+    VALUES(3,('2022-03-19'), 1, 'ExploreNow23', 2);
+INSERT INTO Registration(trip_id, registration_date, customer_id, marketing_campaign,equipment_id)
+    VALUES(2,('2021-01-10'), 4, '2023Friends',4);
+INSERT INTO Registration(trip_id, registration_date, customer_id, marketing_campaign, equipment_id)
+    VALUES(5,('2023-04-27'), 3, 'ExploreNow23',1);
+INSERT INTO Registration(trip_id, registration_date, customer_id, marketing_campaign, equipment_id)
+    VALUES(4, ('2023-10-10'), 6, 'Welcome2023',2);
+INSERT INTO Registration(trip_id, registration_date, customer_id, marketing_campaign, equipment_id)
+    VALUES(6,('2023-01-14'), 5, 'FBPROMOHIKE23',5);
+INSERT INTO Registration(trip_id, registration_date, customer_id, marketing_campaign, equipment_id)
+    VALUES(1, ('2020-08-23'), 2, 'READY2HIKE', 6);
 
 
 #Trip Table Data:
@@ -323,7 +320,7 @@ INSERT INTO Orders(customer_id, equipment_id, order_date, order_total)
     VALUES(6, 6, ('2023-01-14'), 39.99);
 
 ALTER TABLE Employee ADD FOREIGN KEY (equipment_id) REFERENCES Equipment(equipment_id);
-ALTER TABLE Employee ADD FOREIGN KEY (product_id) REFERENCES Equipment(equipment_id);
+ALTER TABLE Employee ADD FOREIGN KEY (equipment_id) REFERENCES Equipment(equipment_id);
 ALTER TABLE Employee ADD FOREIGN KEY (marketing_id) REFERENCES Marketing(marketing_id);
 ALTER TABLE Registration ADD FOREIGN KEY (trip_id) REFERENCES trip(trip_id);
 ALTER TABLE Registration ADD FOREIGN KEY (customer_id) REFERENCES Customer(customer_id);
@@ -339,9 +336,10 @@ ALTER TABLE trip ADD FOREIGN KEY (equipment_id) REFERENCES Equipment(equipment_i
 ALTER TABLE Airfare ADD FOREIGN KEY (trip_id) REFERENCES trip(trip_id);
 ALTER TABLE Orders ADD FOREIGN KEY (customer_id) REFERENCES Customer(customer_id);
 ALTER TABLE Orders ADD FOREIGN KEY (equipment_id) REFERENCES Equipment(equipment_id);
-
+ALTER TABLE Rental ADD FOREIGN KEY (equipment_id) REFERENCES Equipment(equipment_id);
 
 SET foreign_key_checks = 1;
 
+select * from Equipment
 
-SELECT * from Equipment
+select * from Registration
