@@ -22,7 +22,6 @@ DROP TABLE IF EXISTS employee;
 DROP TABLE IF EXISTS destination;
 DROP TABLE IF EXISTS marketing;
 DROP TABLE IF EXISTS equipment;
-DROP TABLE IF EXISTS product;
 DROP TABLE IF EXISTS guide;
 DROP TABLE IF EXISTS rental;
 DROP TABLE IF EXISTS orders;
@@ -115,13 +114,17 @@ CREATE TABLE Marketing (
 -- Equipment table
 CREATE TABLE Equipment (
     equipment_id INT AUTO_INCREMENT NOT NULL,
+    equipment_price decimal not null,
+    equipment_sales decimal not null,
     equipment_name VARCHAR(64) NOT NULL,
     equipment_quantity INT NOT NULL,
     equipment_status VARCHAR(20) NOT NULL,
     equipment_ordered_date DATE NOT NULL,
     equipment_received_date DATE,
+    rental_id int,
     PRIMARY KEY(equipment_id)
 );
+
 
 -- Rental table
 CREATE TABLE Rental (
@@ -133,21 +136,11 @@ CREATE TABLE Rental (
     PRIMARY KEY(rental_id)
 );
 
--- Product table
-CREATE TABLE Product (
-    product_id INT AUTO_INCREMENT NOT NULL,
-    product_name VARCHAR(64) NOT NULL,
-    product_price DECIMAL(10, 2) NOT NULL,
-    product_quantity INT NOT NULL,
-    product_sales DOUBLE,
-    PRIMARY KEY(product_id)
-);
-
 -- Orders table
 CREATE TABLE Orders (
     order_id INT AUTO_INCREMENT NOT NULL,
     customer_id INT NOT NULL,
-    product_id INT NOT NULL,
+    equipment_id INT NOT NULL,
     order_date DATE NOT NULL,
     order_total DECIMAL(10, 2) NOT NULL,
     PRIMARY KEY(order_id)
@@ -201,20 +194,27 @@ INSERT INTO DESTINATION(destination_name, destination_description, destination_c
     VALUES("Cinque Terre","Hike along the cliffside trail through 5 coastal villages.", "Asia");
 
 #Equipment Table Data:
-INSERT INTO Equipment(equipment_name, equipment_quantity, equipment_status, equipment_ordered_date, equipment_received_date)
-    VALUES("Outdoor Hiking Backpack", 12, "In Stock", ('2020-08-23'), ('2020-08-25'));
-INSERT INTO Equipment(equipment_name, equipment_quantity, equipment_status, equipment_ordered_date, equipment_received_date)
-    VALUES("Trekking Poles", 10, "In Stock", ('2020-03-19'), ('2020-03-21'));
-INSERT INTO Equipment(equipment_name, equipment_quantity, equipment_status, equipment_ordered_date, equipment_received_date)
-    VALUES("Tent", 15, "In Stock", ('2021-01-10'), ('2021-01-12'));
-INSERT INTO Equipment(equipment_name, equipment_quantity, equipment_status, equipment_ordered_date, equipment_received_date)
-    VALUES("Camping Survival Kit", 23, "In Stock", ('2022-04-27'), ('2022-04-29'));
-INSERT INTO Equipment(equipment_name, equipment_quantity, equipment_status, equipment_ordered_date, equipment_received_date)
-    VALUES("Cooler", 10, "In Stock", ('2022-10-10'), ('2022-10-12'));
-INSERT INTO Equipment(equipment_name, equipment_quantity, equipment_status, equipment_ordered_date, equipment_received_date)
-    VALUES("Hammock", 23, "In Stock", ('2022-01-14'), ('2022-01-16'));
-INSERT INTO Equipment(equipment_name, equipment_quantity, equipment_status, equipment_ordered_date, equipment_received_date)
-    VALUES("Outdoor Hiking Backpack", 12, "In Stock", ('2010-08-23'), ('2010-08-25'));
+
+#Equipment Table Data:
+INSERT INTO Equipment(equipment_name, equipment_price, equipment_sales, equipment_quantity, equipment_status, equipment_ordered_date, equipment_received_date, rental_id)
+    VALUES("Outdoor Hiking Backpack", 45.00, 940.00,  12, "Rental", ('2020-08-23'), ('2020-08-25'), 2);
+
+INSERT INTO Equipment(equipment_name, equipment_price, equipment_sales, equipment_quantity, equipment_status, equipment_ordered_date, equipment_received_date)
+    VALUES("Trekking Poles", 39.99, 1503.30, 10, "Purchase", ('2020-03-19'), ('2020-03-21'));
+
+INSERT INTO Equipment(equipment_name, equipment_price, equipment_sales, equipment_quantity, equipment_status, equipment_ordered_date, equipment_received_date, rental_id)
+    VALUES("Trekking Poles", 39.99, 399.90, 10, "Rental", ('2020-03-19'), ('2020-03-21'), 1);
+
+INSERT INTO Equipment(equipment_name, equipment_price, equipment_sales, equipment_quantity, equipment_status, equipment_ordered_date, equipment_received_date)
+    VALUES("Tent", 248.39, 3725.85, 15, "Purchase", ('2021-01-10'), ('2021-01-12'));
+
+INSERT INTO Equipment(equipment_name, equipment_price, equipment_sales, equipment_quantity, equipment_status, equipment_ordered_date, equipment_received_date, rental_id)
+    VALUES("Camping Survival Kit", 45.87, 688.05, 23, "Rental", ('2022-04-27'), ('2022-04-29'),3);
+INSERT INTO Equipment(equipment_name, equipment_price, equipment_sales, equipment_quantity, equipment_status, equipment_ordered_date, equipment_received_date)
+    VALUES("Cooler", 179.99, 2159.88, 10, "Purchase", ('2022-10-10'), ('2022-10-12'));
+
+INSERT INTO Equipment(equipment_name, equipment_price, equipment_sales, equipment_quantity, equipment_status, equipment_ordered_date, equipment_received_date, rental_id)
+    VALUES("Hammock", 39.99, 919.77, 23, "Rental", ('2022-01-14'), ('2022-01-16'),6);
 
 
 #Marketing Table Data:
@@ -232,19 +232,7 @@ INSERT INTO Marketing(marketing_strategy, marketing_budget, marketing_campaign)
     VALUES("Partnerships", 1500, "JOINUS2023");
 
 
-#Product Table Data:
-INSERT INTO Product(product_name, product_price, product_quantity, product_sales)
-    VALUES("Outdoor Hiking Backpack", 45.00, 12, 940.00);
-INSERT INTO Product(product_name, product_price, product_quantity, product_sales)
-    VALUES("Trekking Poles", 39.99, 10, 1503.30);
-INSERT INTO Product(product_name, product_price, product_quantity, product_sales)
-    VALUES("Tent", 248.39, 15, 0.00);
-INSERT INTO Product(product_name, product_price, product_quantity, product_sales)
-    VALUES("Camping Survival Kit", 45.87, 23, 458.73);
-INSERT INTO Product(product_name, product_price, product_quantity, product_sales)
-    VALUES("Cooler", 179.99, 10, 203.23);
-INSERT INTO Product(product_name, product_price, product_quantity, product_sales)
-    VALUES("Hammock", 39.99, 23, 439.09);
+
 
 
 #Registration Table Data:
@@ -318,21 +306,21 @@ INSERT INTO Airfare(trip_id, airfare_price, airfare_quantity, airfare_descriptio
     VALUES(6, 700.00, 10, "Roundtrip Flight", "AA 131");
 
 #Orders Table Data:
-INSERT INTO Orders(customer_id, product_id, order_date, order_total)
+INSERT INTO Orders(customer_id, equipment_id, order_date, order_total)
     VALUES(1, 1, ('2022-08-23'), 45.00);
-INSERT INTO Orders(customer_id, product_id, order_date, order_total)
+INSERT INTO Orders(customer_id, equipment_id, order_date, order_total)
     VALUES(2, 2, ('2022-03-19'), 39.99);
-INSERT INTO Orders(customer_id, product_id, order_date, order_total)
+INSERT INTO Orders(customer_id, equipment_id, order_date, order_total)
     VALUES(3, 3, ('2021-01-10'), 248.39);
-INSERT INTO Orders(customer_id, product_id, order_date, order_total)
+INSERT INTO Orders(customer_id, equipment_id, order_date, order_total)
     VALUES(4, 4, ('2023-04-27'), 45.87);
-INSERT INTO Orders(customer_id, product_id, order_date, order_total)
+INSERT INTO Orders(customer_id, equipment_id, order_date, order_total)
     VALUES(5, 5, ('2023-10-10'), 179.99);
-INSERT INTO Orders(customer_id, product_id, order_date, order_total)
+INSERT INTO Orders(customer_id, equipment_id, order_date, order_total)
     VALUES(6, 6, ('2023-01-14'), 39.99);
 
 ALTER TABLE Employee ADD FOREIGN KEY (equipment_id) REFERENCES Equipment(equipment_id);
-ALTER TABLE Employee ADD FOREIGN KEY (product_id) REFERENCES Product(product_id);
+ALTER TABLE Employee ADD FOREIGN KEY (product_id) REFERENCES Equipment(equipment_id);
 ALTER TABLE Employee ADD FOREIGN KEY (marketing_id) REFERENCES Marketing(marketing_id);
 ALTER TABLE Registration ADD FOREIGN KEY (trip_id) REFERENCES trip(trip_id);
 ALTER TABLE Registration ADD FOREIGN KEY (customer_id) REFERENCES Customer(customer_id);
@@ -344,10 +332,13 @@ ALTER TABLE trip ADD FOREIGN KEY (employee_id) REFERENCES Employee(employee_id);
 ALTER TABLE trip ADD FOREIGN KEY (destination_id) REFERENCES Destination(destination_id);
 ALTER TABLE trip ADD FOREIGN KEY (airfare_id) REFERENCES Airfare(airfare_id);
 ALTER TABLE trip ADD FOREIGN KEY (equipment_id) REFERENCES Equipment(equipment_id);
-ALTER TABLE trip ADD FOREIGN KEY (product_id) REFERENCES Product(product_id);
+ALTER TABLE trip ADD FOREIGN KEY (equipment_id) REFERENCES Equipment(equipment_id);
 ALTER TABLE Airfare ADD FOREIGN KEY (trip_id) REFERENCES trip(trip_id);
 ALTER TABLE Orders ADD FOREIGN KEY (customer_id) REFERENCES Customer(customer_id);
-ALTER TABLE Orders ADD FOREIGN KEY (product_id) REFERENCES Product(product_id);
+ALTER TABLE Orders ADD FOREIGN KEY (equipment_id) REFERENCES Equipment(equipment_id);
 
 
 SET foreign_key_checks = 1;
+
+
+SELECT * from Equipment

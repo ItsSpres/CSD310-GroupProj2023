@@ -105,7 +105,7 @@ display_report_sales(
     user="OutlandAdventures_user",
     password="Explore",
     database="outlandadventures",
-    sql_query='Select product_name AS Product, product_price AS Price, product_sales AS "Sales Revenue" FROM Product;'
+    sql_query='Select equipment_name AS Product, equipment_price AS Price, equipment_sales AS "Sales Revenue" FROM Equipment;'
 
 )
 
