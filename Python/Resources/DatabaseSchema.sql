@@ -67,6 +67,7 @@ CREATE TABLE Registration (
     trip_id INT NOT NULL,
     registration_date DATE NOT NULL,
     customer_id INT NOT NULL,
+    marketing_campaign varchar(64),
     PRIMARY KEY(registration_id)
 );
 -- Customer table
@@ -108,6 +109,7 @@ CREATE TABLE Marketing (
     marketing_strategy VARCHAR(64) NOT NULL,
     marketing_budget DECIMAL(10, 2) NOT NULL,
     marketing_campaign VARCHAR(255) NOT NULL,
+    registration_id int,
     PRIMARY KEY(marketing_id)
 );
 
@@ -143,6 +145,7 @@ CREATE TABLE Orders (
     equipment_id INT NOT NULL,
     order_date DATE NOT NULL,
     order_total DECIMAL(10, 2) NOT NULL,
+    marketing_id int,
     PRIMARY KEY(order_id)
 );
 
@@ -236,20 +239,20 @@ INSERT INTO Marketing(marketing_strategy, marketing_budget, marketing_campaign)
 
 
 #Registration Table Data:
-INSERT INTO Registration(trip_id, registration_date, customer_id)
-    VALUES(1, ('2022-08-23'), 2);
-INSERT INTO Registration(trip_id, registration_date, customer_id)
-    VALUES(3,('2022-03-19'), 1);
-INSERT INTO Registration(trip_id, registration_date, customer_id)
-    VALUES(2,('2021-01-10'), 4);
-INSERT INTO Registration(trip_id, registration_date, customer_id)
-    VALUES(5,('2023-04-27'), 3);
-INSERT INTO Registration(trip_id, registration_date, customer_id)
-    VALUES(4, ('2023-10-10'), 6);
-INSERT INTO Registration(trip_id, registration_date, customer_id)
-    VALUES(6,('2023-01-14'), 5);
-INSERT INTO Registration(trip_id, registration_date, customer_id)
-    VALUES(1, ('2020-08-23'), 2);
+INSERT INTO Registration(trip_id, registration_date, customer_id, marketing_campaign)
+    VALUES(1, ('2022-08-23'), 2, 'JOINUS2023');
+INSERT INTO Registration(trip_id, registration_date, customer_id, marketing_campaign)
+    VALUES(3,('2022-03-19'), 1, 'ExploreNow23');
+INSERT INTO Registration(trip_id, registration_date, customer_id, marketing_campaign)
+    VALUES(2,('2021-01-10'), 4, '2023Friends');
+INSERT INTO Registration(trip_id, registration_date, customer_id, marketing_campaign)
+    VALUES(5,('2023-04-27'), 3, 'ExploreNow23');
+INSERT INTO Registration(trip_id, registration_date, customer_id, marketing_campaign)
+    VALUES(4, ('2023-10-10'), 6, 'Welcome2023');
+INSERT INTO Registration(trip_id, registration_date, customer_id, marketing_campaign)
+    VALUES(6,('2023-01-14'), 5, 'FBPROMOHIKE23');
+INSERT INTO Registration(trip_id, registration_date, customer_id, marketing_campaign)
+    VALUES(1, ('2020-08-23'), 2, 'READY2HIKE');
 
 
 #Trip Table Data:
