@@ -340,6 +340,5 @@ ALTER TABLE Rental ADD FOREIGN KEY (equipment_id) REFERENCES Equipment(equipment
 
 SET foreign_key_checks = 1;
 
-select * from Equipment
 
-select * from Registration
+select * from rental r join Equipment E on r.equipment_id = E.equipment_id

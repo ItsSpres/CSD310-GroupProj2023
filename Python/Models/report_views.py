@@ -213,5 +213,6 @@ display_registrations_report(
     user="OutlandAdventures_user",
     password="Explore",
     database="outlandadventures",
-    sql_query=f'SELECT CONCAT(c.customer_fname," ", c.customer_lname) AS Customer, r.registration_date AS "Registration Date", t.trip_name AS "Trip Name:" , m.marketing_strategy AS "Campaign:",DATE_FORMAT(t.start_date, "%M %d, %Y") AS Start, DATE_FORMAT(t.end_date,"%M %d, %Y" ) AS End, e.equipment_status FROM Customer c join Registration r on c.customer_id = r.customer_id join Equipment e on e.equipment_id = r.equipment_id join Marketing m on m.marketing_campaign = r.marketing_campaign join Trip t on t.trip_id = r.trip_id;'
+    sql_query=f'SELECT CONCAT(c.customer_fname," ", c.customer_lname) AS Customer, r.registration_date AS "Registration Date", t.trip_name AS "Trip Name:" , m.marketing_strategy AS "Campaign:",DATE_FORMAT(t.start_date, "%M %d, %Y") AS Start, DATE_FORMAT(t.end_date,"%M %d, %Y" ) AS End, e.equipment_status AS "Rental or Purchase" FROM Customer c join Registration r on c.customer_id = r.customer_id join Equipment e on e.equipment_id = r.equipment_id join Marketing m on m.marketing_campaign = r.marketing_campaign join Trip t on t.trip_id = r.trip_id;'
 )
+
