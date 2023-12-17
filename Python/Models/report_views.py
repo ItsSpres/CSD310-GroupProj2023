@@ -104,7 +104,7 @@ display_report_sales(
     host="127.0.0.1",
     user="OutlandAdventures_user",
     password="Explore",
-    database="outlandadventures",
+    database="OutlandAdventures",
     sql_query='Select equipment_name AS Product, equipment_price AS Price, CONCAT("$ ", FORMAT(equipment_sales, 2)) AS "Sales Revenue" FROM Equipment;'
 
 )

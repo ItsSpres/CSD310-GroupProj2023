@@ -1,4 +1,15 @@
-Use OutlandAdventures;
+ -- DROP DATABASE IF EXISTS OutlandAdventures;
+ -- CREATE DATABASE OutlandAdventures;
+
+-- USE OutlandAdventures;
+-- drop database user if exists
+-- DROP USER IF EXISTS 'OutlandAdventures_user'@'localhost';
+
+-- create movies_user and grant them all privileges to the movies database
+-- CREATE USER 'OutlandAdventures_user'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Explore';
+
+-- grant all privileges to the movies database to user movies_user on localhost
+-- GRANT ALL PRIVILEGES ON OutlandAdventures.* TO 'OutlandAdventures_user'@'localhost';
 
 SET foreign_key_checks = 0;
 
@@ -317,4 +328,17 @@ INSERT INTO Orders(customer_id, order_date)
 INSERT INTO Orders(customer_id, order_date)
     VALUES(6, ('2023-01-14'));
 
+
+ALTER TABLE Registration ADD FOREIGN KEY (trip_id) REFERENCES trip(trip_id);
+ALTER TABLE Registration ADD FOREIGN KEY (customer_id) REFERENCES Customer(customer_id);
+ALTER TABLE Guide ADD FOREIGN KEY (employee_id) REFERENCES Employee(employee_id);
+ALTER TABLE rental ADD FOREIGN KEY (equipment_id) REFERENCES Equipment(equipment_id);
+ALTER TABLE rental ADD FOREIGN KEY (customer_id) REFERENCES Customer(customer_id);
+ALTER TABLE trip ADD FOREIGN KEY (destination_id) REFERENCES Destination(destination_id);
+ALTER TABLE Airfare ADD FOREIGN KEY (trip_id) REFERENCES trip(trip_id);
+ALTER TABLE Orders ADD FOREIGN KEY (customer_id) REFERENCES Customer(customer_id);
+ALTER TABLE Rental ADD FOREIGN KEY (equipment_id) REFERENCES Equipment(equipment_id);
+
 SET foreign_key_checks = 1;
+
+select * from rental r join Equipment E on r.equipment_id = E.equipment_id
