@@ -6,4 +6,4 @@ pip install mysql-connector-python
 pip install PrettyTable
 ```
 ### SQL
-"# CSD310-GroupProj2023" 
+https://github.com/ItsSpres/CSD310-GroupProj2023/blob/main/Python/Resources/DatabaseSchema.sql 
