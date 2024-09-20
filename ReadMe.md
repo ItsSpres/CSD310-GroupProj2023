@@ -1,7 +1,7 @@
 # MySQL Database
 Software Development 310 - Group Project
 - Project Name: Outland Adventures Database Management
-- Presentation can be found on my [LinkedIn](https://www.linkedin.com/in/ianspresney/)
+- Presentation can be found [here](https://1drv.ms/p/c/70820d4feba04e09/EYfCYee_-KRDkTxUN02wg-IBd9jwJh3hWoIhenlZBlbfHg).
 ### Description:
 Developed a comprehensive database system for managing outdoor adventure trips, equipment rentals, and customer interactions. This project involved designing and implementing a relational database schema to support various aspects of trip management, including destinations, trips, equipment rentals, and customer registrations. It also included creating tables for managing airfare, marketing strategies, and employee details.
 
