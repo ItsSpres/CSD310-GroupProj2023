@@ -20,10 +20,11 @@ This project involved creating a relational database system to manage outdoor ad
 To set up the project locally, follow these steps:
 1. Clone the repository: 
    ```bash
-   git clone <repo-link>’’’
+   git clone <repo-link>```
 2.	Install dependencies:
 ```pip install mysql-connector-python 
-pip install PrettyTable’’’
+   pip install PrettyTable```
+
 3.	Run the scripts provided in the Python folder.
 
 ## Database Schema
