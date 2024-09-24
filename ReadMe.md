@@ -23,6 +23,7 @@ To set up the project locally, follow these steps:
    ```bash
    pip install mysql-connector-python
    pip install PrettyTable
+   ```
 3.	Run the scripts provided in the Python folder.
 
 ## Database Schema
