@@ -1,9 +1,9 @@
 # MySQL Database Project: Outland Adventures
 
 **Software Development 310 - Group Project**
-Project presentation can be found [here](https://onedrive.live.com/edit?id=70820D4FEBA04E09!se761c287f8bf43a4913c54374db083e2&resid=70820D4FEBA04E09!se761c287f8bf43a4913c54374db083e2&cid=70820d4feba04e09&ithint=file%2Cpptx&redeem=aHR0cHM6Ly8xZHJ2Lm1zL3AvYy83MDgyMGQ0ZmViYTA0ZTA5L0VZZkNZZWVfLUtSRGtUeFVOMDJ3Zy1JQmQ5andKaDNoV29JaGVubFpCbGJmSGc&migratedtospo=true&wdo=2).
+
 ## Project Overview
-This project involved creating a relational database system to manage outdoor adventure trips, equipment rentals, and customer interactions for Outland Adventures. The database supports trip management, customer registrations, equipment tracking, and more.
+This project involved creating a relational database system to manage outdoor adventure trips, equipment rentals, and customer interactions for Outland Adventures. The database supports trip management, customer registrations, equipment tracking, and more. The Project presentation can be found [here](https://onedrive.live.com/edit?id=70820D4FEBA04E09!se761c287f8bf43a4913c54374db083e2&resid=70820D4FEBA04E09!se761c287f8bf43a4913c54374db083e2&cid=70820d4feba04e09&ithint=file%2Cpptx&redeem=aHR0cHM6Ly8xZHJ2Lm1zL3AvYy83MDgyMGQ0ZmViYTA0ZTA5L0VZZkNZZWVfLUtSRGtUeFVOMDJ3Zy1JQmQ5andKaDNoV29JaGVubFpCbGJmSGc&migratedtospo=true&wdo=2).
 
 ## Key Features
 - Designed a relational database schema with 13 interconnected tables, including **Customer**, **Employee**, **Trip**, **Equipment**, and **Airfare**.
