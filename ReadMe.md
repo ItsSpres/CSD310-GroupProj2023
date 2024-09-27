@@ -29,7 +29,7 @@ To set up the project locally, follow these steps:
 ## Database Schema
 
 ### MySQL
-[MySQL](https://github.com/ItsSpres/CSD310-GroupProj2023/blob/main/Python/Resources/DatabaseSchema.sql)
+[SQL](https://github.com/ItsSpres/CSD310-GroupProj2023/blob/main/Python/Resources/DatabaseSchema.sql)
 ### Python
 [Database.py](https://github.com/ItsSpres/CSD310-GroupProj2023/blob/main/Python/Database.py)
 [Main.py](https://github.com/ItsSpres/CSD310-GroupProj2023/blob/main/Python/main.py)
