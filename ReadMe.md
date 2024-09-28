@@ -1,35 +1,70 @@
-# MySQL Database Project: Outland Adventures
-
-**Software Development 310 - Group Project**
+# Outland Adventures - Bravo Group Database Project
 
 ## Project Overview
-This project involved creating a relational database system to manage outdoor adventure trips, equipment rentals, and customer interactions for Outland Adventures. The database supports trip management, customer registrations, equipment tracking, and more. The Project presentation can be found [here](https://onedrive.live.com/edit?id=70820D4FEBA04E09!se761c287f8bf43a4913c54374db083e2&resid=70820D4FEBA04E09!se761c287f8bf43a4913c54374db083e2&cid=70820d4feba04e09&ithint=file%2Cpptx&redeem=aHR0cHM6Ly8xZHJ2Lm1zL3AvYy83MDgyMGQ0ZmViYTA0ZTA5L0VZZkNZZWVfLUtSRGtUeFVOMDJ3Zy1JQmQ5andKaDNoV29JaGVubFpCbGJmSGc&migratedtospo=true&wdo=2).
+Outland Adventures is a business founded by outdoor enthusiasts Blythe Timmerson and Jim Ford. They offer guided hiking and camping trips, along with equipment rentals and sales. As the business expanded, the following questions arose to optimize operations:
+1. Do enough customers buy equipment to justify continuing equipment sales?
+2. Are there inventory items over five years old?
+3. Is there any location with a downward trend in bookings?
 
-## Key Features
-- Designed a relational database schema with 13 interconnected tables, including **Customer**, **Employee**, **Trip**, **Equipment**, and **Airfare**.
-- Implemented foreign key constraints to ensure data integrity.
-- Developed SQL scripts for creating tables, inserting data, and maintaining table relationships.
-- Created complex SQL queries for comprehensive reporting on customer orders and equipment rentals.
+## Team Members
+- **Andrew Bach**: Database Administrator and Data Analyst
+- **Torren Davis**: Presentation Administrator
+- **John Garcia III**: Project Leader
+- **Taylor Mommer**: Database Administrator
+- **Ian Spresney**: Database Administrator
 
-## Technologies Used
-- **MySQL** for database development.
-- **Python** for database management scripts.
-- **PrettyTable** for formatting query output.
+## Technologies and Tools
+- **Database**: MySQL
+- **Languages**: SQL, Python (for analysis and reporting)
+- **Other Tools**: Microsoft PowerPoint (for presentation)
 
-## Setup Instructions
-To set up the project locally, follow these steps:
-1. Clone the repository: 
-2.	Install dependencies:
-   ```bash
-   pip install mysql-connector-python
-   pip install PrettyTable
-   ```
-3.	Run the scripts provided in the Python folder.
+## Entity Relationship Diagram (ERD)
+![ERD Diagram](images/slide_3_image.png)
 
-## Database Schema
+## Table Data
+Here are screenshots of the data tables used in this project:
+- **Customer Table**  
+  ![Customer Table](images/slide_1_image.png)
 
-### MySQL
-[SQL](https://github.com/ItsSpres/CSD310-GroupProj2023/blob/main/Python/Resources/DatabaseSchema.sql)
-### Python
-[Database.py](https://github.com/ItsSpres/CSD310-GroupProj2023/blob/main/Python/Database.py)
-[Main.py](https://github.com/ItsSpres/CSD310-GroupProj2023/blob/main/Python/main.py)
+- **Employee Table**  
+  ![Employee Table](images/slide_4_image.png)
+
+- **Equipment Table**  
+  ![Equipment Table](images/slide_6_image.png)
+
+- **Trip Table**  
+  ![Trip Table](images/slide_8_image.png)
+
+- **Marketing Table**  
+  ![Marketing Table](images/slide_10_image.png)
+
+## Reports
+
+### 1. Countries Report
+**Question**: Is there any location with a downward trend in bookings?  
+**Solution**: This report queries the database and displays trip information such as trip name, location, country, number of registrations, and year of the trip. This helps Outland Adventures monitor the booking trends for each location.
+![Countries Report](images/slide_6_image.png)
+
+### 2. Sales Report
+**Question**: Do enough customers buy equipment to keep equipment sales?  
+**Solution**: This report displays sales information including the product name, price, and total revenue from sales. This information helps the company decide whether to continue selling equipment.
+![Sales Report](images/slide_8_image.png)
+
+### 3. Equipment Age Report
+**Question**: Are there inventory items over five years old?  
+**Solution**: This report lists equipment with details like name, date ordered, date received, and age. It highlights equipment over five years old to help the company manage inventory effectively.
+![Equipment Age Report](images/slide_10_image.png)
+
+### 4. Registration Data Report
+This report shows customer registrations, including registration date, trip name, associated marketing campaign, and trip dates. It also indicates whether customers rented or purchased equipment.
+![Registration Data](images/slide_12_image.png)
+
+## Assumptions
+- More than one guide can be assigned to a trip.
+- Customers can register for trips online.
+- Trips have at least one guide.
+- Equipment can be associated with multiple trips.
+- Rented equipment is linked to the customer until returned.
+
+## License
+This project is for educational purposes only.
