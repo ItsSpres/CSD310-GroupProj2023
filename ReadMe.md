@@ -24,7 +24,7 @@ Outland Adventures is a business founded by outdoor enthusiasts Blythe Timmerson
 ## Table Data
 Here are screenshots of the data tables used in this project:
 - **Customer Table**  
-  ![Customer Table](images/slide_1_image.png)
+  ![Customer Table](https://itsspres.github.io/Ian-Spresney-Portfolio/assets/images/slide_1_image.png)
 
 - **Employee Table**  
   ![Employee Table](images/slide_4_image.png)
